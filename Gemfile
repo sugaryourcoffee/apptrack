@@ -46,8 +46,11 @@ end
 
 group :test, :development do
   gem "rspec-rails", "2.13.1"
+  gem "guard-rspec", "3.0.3"
 end
 
 group :test do
   gem "capybara", "2.1.0"
+  gem "rb-inotify", "0.9.2"
+  gem "libnotify", "0.8.2"
 end

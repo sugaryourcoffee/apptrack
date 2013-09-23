@@ -12,7 +12,13 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore others
+bundler_stubs/
+.project
+.DS_Store
+
 # Ignore all logfiles and tempfiles.
+*.sw?
 /log/*.log
 /tmp
 =======

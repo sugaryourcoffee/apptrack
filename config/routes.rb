@@ -1,4 +1,8 @@
 Apptrack::Application.routes.draw do
+
+  get 'applications'     => 'applications#index'
+  get 'applications/:id' => 'applications#show', as: 'application'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

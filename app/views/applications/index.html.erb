@@ -1,0 +1,12 @@
+<h1><%= pluralize(@applications.size, "Application") %></h1>
+
+<article>
+  <% @applications.each do |application| %>
+    <header>
+      <%= application.title %>
+    </header>
+    <p>
+      <%= truncate(application.description, lenght: 40, separator: ' ') %> 
+    </p>
+  <% end %>
+</article>
