@@ -1,7 +1,17 @@
 Apptrack::Application.routes.draw do
 
-  get 'applications'     => 'applications#index'
-  get 'applications/:id' => 'applications#show', as: 'application'
+  resources :comments
+
+  root "applications#index"
+
+  resources :applications do
+    resources :tracks
+  end
+
+#  get 'applications'     => 'applications#index'
+#  get 'applications/:id' => 'applications#show', as: 'application'
+
+#  get 'tracks/:id'        => 'tracks#show', as: 'track'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

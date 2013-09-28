@@ -4,3 +4,16 @@
   <header><%= @application.title %></header>
   <p><%= @application.description %></p>
 </article>
+
+<h2><%= pluralize(@application.tracks.size, "Track") %></h2>
+
+<% @application.tracks.each do |track| %>
+  <article>
+    <header>
+      <%= link_to track.title, application_track_path(@application, track) %>
+    </header>
+    <p><%= track.description %></p>
+  </article>
+<% end %>
+
+<%= link_to "All Applications", applications_path %>

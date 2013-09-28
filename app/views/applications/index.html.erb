@@ -3,7 +3,7 @@
 <article>
   <% @applications.each do |application| %>
     <header>
-      <%= application.title %>
+      <%= link_to application.title, application_path(application) %>
     </header>
     <p>
       <%= truncate(application.description, lenght: 40, separator: ' ') %> 
