@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "edit track" do
 
-  it "should update the track" do
+  it "should show the edit page" do
     app = Project.create(project_attributes)
     track = app.tracks.create(track_attributes)
 
@@ -11,6 +11,22 @@ describe "edit track" do
     click_link "Edit"
 
     expect(current_path).to eq(edit_project_track_path(app, track))
+  end
+
+  it "should update the track" do
+    app = Project.create(project_attributes)
+    track = app.tracks.create(track_attributes)
+
+    visit edit_project_track_path(app, track)
+
+    fill_in "Title", with: "Updated track title"
+    fill_in "Description", with: "Updated track description"
+
+    click_button "Update Track"
+
+    expect(current_path).to eq(project_track_path(app, track))
+    expect(page).to have_text "Updated track title"
+    expect(page).to have_text "Updated track description"
   end
 
 end
