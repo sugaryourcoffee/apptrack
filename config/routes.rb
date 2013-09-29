@@ -1,11 +1,13 @@
 Apptrack::Application.routes.draw do
 
-  resources :comments
-
   root "projects#index"
 
   resources :projects do
     resources :tracks
+  end
+
+  resources :tracks do
+    resources :comments
   end
 
 #  get 'projects'     => 'projects#index'

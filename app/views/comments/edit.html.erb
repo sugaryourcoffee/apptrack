@@ -1,0 +1,15 @@
+<h1>Edit <%= @comment.title %></h1>
+
+<%= form_for([@track, @comment]) do |f| %>
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :comment %><br/>
+    <%= f.text_area :comment, cols: 40, rows: 7 %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

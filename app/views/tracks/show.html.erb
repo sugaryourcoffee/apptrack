@@ -2,6 +2,7 @@
   <header><%= @track.title %></header>
   <p><%= @track.description %></p>
   <p><%= @track.version %></p>
+  <p><%= link_to "Edit", edit_project_track_path(@project, @track) %></p>
 </article>
 
 <h2><%= pluralize(@track.comments.size, "Comment") %></h2>
@@ -10,6 +11,9 @@
   <article>
     <header><%= comment.title %></header>
     <p><%= comment.comment %></p>
+    <p><%= link_to "Edit Comment",
+                   edit_track_comment_path(@track, comment) %>
+    </p>
   </article>
 <% end %>
 
