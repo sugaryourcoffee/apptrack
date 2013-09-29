@@ -8,6 +8,20 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def new
+    @project = Project.new
+  end
+
+  def create
+    @project = Project.new(project_params)
+    if @project.save
+      flash[:notice] = "Created new project #{@project.title}"
+      redirect_to @project
+    else
+      render new
+    end
+  end
+
   def edit
     @project = Project.find(params[:id])
   end

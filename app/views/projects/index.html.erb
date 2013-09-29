@@ -1,5 +1,7 @@
 <h1><%= pluralize(@projects.size, "project") %></h1>
 
+<nav><%= link_to "Create new Project", new_project_path %></nav>
+
 <article>
   <% @projects.each do |project| %>
     <header>

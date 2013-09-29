@@ -1,5 +1,22 @@
 class CommentsController < ApplicationController
 
+  def new
+    @comment = Comment.new
+    @track = Track.find(params[:track_id])
+  end
+
+  def create
+    @track = Track.find(params[:track_id])
+    @comment = @track.comments.create(comment_params)
+
+    if @comment
+      flash[:notice] = "Created new comment #{@comment.title}"
+      redirect_to project_track_path(@track.project, @track)
+    else
+      render new
+    end
+  end
+
   def edit
     @comment = Comment.find(params[:id])
     @track = Track.find(params[:track_id])
@@ -8,7 +25,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @track = Track.find(params[:track_id])
-    @project = Project.find(@track.project_id)
+    @project = @track.project
 
     if @comment.update(comment_params)
       flash[:notice] = "Updated comment #{@comment.title}"

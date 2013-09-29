@@ -8,6 +8,8 @@
 
 <h2><%= pluralize(@project.tracks.size, "Track") %></h2>
 
+<p><%= link_to "Create new Track", new_project_track_path(@project) %></p>
+
 <% @project.tracks.each do |track| %>
   <article>
     <header>
