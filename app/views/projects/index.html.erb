@@ -1,0 +1,13 @@
+<h1><%= pluralize(@projects.size, "project") %></h1>
+
+<article>
+  <% @projects.each do |project| %>
+    <header>
+      <%= link_to project.title, project_path(project) %>
+    </header>
+    <p>
+      <%= truncate(project.description, length: 80, separator: ' ') %> 
+    </p>
+    <p><%= link_to "Edit", edit_project_path(project) %></p>
+  <% end %>
+</article>

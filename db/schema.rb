@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928155621) do
-
-  create_table "applications", force: true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.boolean  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20130929084755) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -31,15 +23,23 @@ ActiveRecord::Schema.define(version: 20130928155621) do
 
   add_index "comments", ["track_id"], name: "index_comments_on_track_id"
 
+  create_table "projects", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tracks", force: true do |t|
     t.string   "title"
     t.string   "description"
     t.string   "version"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "application_id"
+    t.integer  "project_id"
   end
 
-  add_index "tracks", ["application_id"], name: "index_tracks_on_application_id"
+  add_index "tracks", ["project_id"], name: "index_tracks_on_project_id"
 
 end

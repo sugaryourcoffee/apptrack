@@ -1,0 +1,16 @@
+<article>
+  <header><%= @track.title %></header>
+  <p><%= @track.description %></p>
+  <p><%= @track.version %></p>
+</article>
+
+<h2><%= pluralize(@track.comments.size, "Comment") %></h2>
+
+<% @track.comments.each do |comment| %>
+  <article>
+    <header><%= comment.title %></header>
+    <p><%= comment.comment %></p>
+  </article>
+<% end %>
+
+<%= link_to "Back to '#{@project.title}'", project_path(@project) %>

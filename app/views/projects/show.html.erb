@@ -1,0 +1,20 @@
+<h1><%= @project.title %></h1>
+
+<article>
+  <header><%= @project.title %></header>
+  <p><%= @project.description %></p>
+  <p><%= link_to "Edit", edit_project_path(@project) %></p>
+</article>
+
+<h2><%= pluralize(@project.tracks.size, "Track") %></h2>
+
+<% @project.tracks.each do |track| %>
+  <article>
+    <header>
+      <%= link_to track.title, project_track_path(@project, track) %>
+    </header>
+    <p><%= track.description %></p>
+  </article>
+<% end %>
+
+<%= link_to "All Applications", projects_path %>
