@@ -3,7 +3,12 @@
 <article>
   <header><%= @project.title %></header>
   <p><%= @project.description %></p>
-  <p><%= link_to "Edit", edit_project_path(@project) %></p>
+  <p>
+    <%= link_to "Edit", edit_project_path(@project) %> | 
+    <%= link_to "Delete", project_path(@project), 
+                method: :delete, 
+                data: { confirm: 'Are you sure to delete the application?' } %>
+  </p>
 </article>
 
 <h2><%= pluralize(@project.tracks.size, "Track") %></h2>
@@ -16,6 +21,11 @@
       <%= link_to track.title, project_track_path(@project, track) %>
     </header>
     <p><%= track.description %></p>
+    <p>
+      <%= link_to "Delete Track", project_track_path(@project, track),
+                  method: :delete, 
+                  data: { confirm: "Are you sure to delete the track?" } %>
+    </p>
   </article>
 <% end %>
 

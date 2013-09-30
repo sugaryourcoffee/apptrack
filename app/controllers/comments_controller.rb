@@ -35,6 +35,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @track = Track.find(params[:track_id])
+    @project = @track.project
+    @comment.destroy
+    flash[:notice] = "Deleted comment #{@comment.title}"
+    redirect_to project_track_path(@project, @track)
+  end
+
   private
 
     def comment_params

@@ -38,6 +38,14 @@ class TracksController < ApplicationController
     end
   end
 
+  def destroy
+    @project = Project.find(params[:project_id])
+    @track = Track.find(params[:id])
+    @track.destroy
+    flash[:notice] = "Deleted the track #{@track.title}"
+    redirect_to project_path(@project)
+  end
+
   private
 
     def track_params

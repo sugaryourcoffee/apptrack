@@ -14,7 +14,10 @@
     <header><%= comment.title %></header>
     <p><%= comment.comment %></p>
     <p><%= link_to "Edit Comment",
-                   edit_track_comment_path(@track, comment) %>
+                   edit_track_comment_path(@track, comment) %> |
+       <%= link_to "Delete Comment", track_comment_path(@track, comment),
+                   method: :delete,
+                   data: { confirm: "Are you sure to delete the comment?" } %>
     </p>
   </article>
 <% end %>
