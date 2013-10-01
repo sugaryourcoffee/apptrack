@@ -27,6 +27,8 @@ describe "edit comment" do
     click_button "Update Comment"
 
     expect(current_path).to eq(project_track_path(app, track))
+
+    expect(page).to have_text "Comment successfully updated!"
     expect(page).to have_text "Updated title"
     expect(page).to have_text "Updated comment"
   end

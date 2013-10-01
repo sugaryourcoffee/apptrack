@@ -14,8 +14,8 @@ class TracksController < ApplicationController
     @project = Project.find(params[:project_id])
     @track = @project.tracks.create(track_params)
     if @track
-      flash[:notice] = "Created new track #{@track.title}"
-      redirect_to project_track_path(@project, @track)
+      redirect_to project_track_path(@project, @track), 
+                  notice: "Track successfully created!"
     else
       render new
     end
@@ -31,8 +31,8 @@ class TracksController < ApplicationController
     @project = Project.find(params[:project_id])
 
     if @track.update(track_params)
-      flash[:notice] = "Updated track #{@track.title}"
-      redirect_to project_track_path(@project, @track)
+      redirect_to project_track_path(@project, @track), 
+                  notice: "Track successfully updated!"
     else
       render update
     end
@@ -42,8 +42,7 @@ class TracksController < ApplicationController
     @project = Project.find(params[:project_id])
     @track = Track.find(params[:id])
     @track.destroy
-    flash[:notice] = "Deleted the track #{@track.title}"
-    redirect_to project_path(@project)
+    redirect_to project_path(@project), alert: "Track successfully deleted!"
   end
 
   private

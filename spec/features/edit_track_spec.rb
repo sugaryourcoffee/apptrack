@@ -25,6 +25,8 @@ describe "edit track" do
     click_button "Update Track"
 
     expect(current_path).to eq(project_track_path(app, track))
+
+    expect(page).to have_text "Track successfully updated!"
     expect(page).to have_text "Updated track title"
     expect(page).to have_text "Updated track description"
   end

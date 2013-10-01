@@ -26,6 +26,7 @@ describe "create comment" do
 
     expect(current_path).to eq(project_track_path(app, track))
 
+    expect(page).to have_text "Comment successfully created!"
     expect(page).to have_text "New comment title"
   end
 

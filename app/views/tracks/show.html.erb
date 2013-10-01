@@ -7,8 +7,6 @@
 
 <h2><%= pluralize(@track.comments.size, "Comment") %></h2>
 
-<p><%= link_to "Create new Comment", new_track_comment_path(@track) %></p>
-
 <% @track.comments.each do |comment| %>
   <article>
     <header><%= comment.title %></header>
@@ -22,4 +20,6 @@
   </article>
 <% end %>
 
-<%= link_to "Back to '#{@project.title}'", project_path(@project) %>
+<p>
+  <%= link_to "Back to '#{@project.title}'", project_path(@project) %> |
+  <%= link_to "Create new Comment", new_track_comment_path(@track) %></p>

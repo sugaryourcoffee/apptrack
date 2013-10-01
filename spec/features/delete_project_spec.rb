@@ -11,6 +11,7 @@ describe "delete the application" do
 
     expect(current_path).to eq(projects_path)
 
+    expect(page).to have_text("Application successfully deleted!")
     expect(page).not_to have_text(app.title)
   end
 

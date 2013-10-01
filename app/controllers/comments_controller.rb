@@ -10,8 +10,8 @@ class CommentsController < ApplicationController
     @comment = @track.comments.create(comment_params)
 
     if @comment
-      flash[:notice] = "Created new comment #{@comment.title}"
-      redirect_to project_track_path(@track.project, @track)
+      redirect_to project_track_path(@track.project, @track), 
+                  notice: "Comment successfully created!"
     else
       render new
     end
@@ -28,8 +28,8 @@ class CommentsController < ApplicationController
     @project = @track.project
 
     if @comment.update(comment_params)
-      flash[:notice] = "Updated comment #{@comment.title}"
-      redirect_to project_track_path(@project, @track)
+      redirect_to project_track_path(@project, @track), 
+                  notice: "Comment successfully updated!"
     else
       render update
     end
@@ -40,8 +40,8 @@ class CommentsController < ApplicationController
     @track = Track.find(params[:track_id])
     @project = @track.project
     @comment.destroy
-    flash[:notice] = "Deleted comment #{@comment.title}"
-    redirect_to project_track_path(@project, @track)
+    redirect_to project_track_path(@project, @track), 
+                alert: "Comment successfully deleted!"
   end
 
   private

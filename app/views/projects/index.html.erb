@@ -1,7 +1,5 @@
 <h1><%= pluralize(@projects.size, "project") %></h1>
 
-<nav><%= link_to "Create new Project", new_project_path %></nav>
-
 <article>
   <% @projects.each do |project| %>
     <header>
@@ -10,6 +8,11 @@
     <p>
       <%= truncate(project.description, length: 80, separator: ' ') %> 
     </p>
+    <p>
+      <%= pluralize(project.tracks.size, "track") %>
+    </p>
     <p><%= link_to "Edit", edit_project_path(project) %></p>
   <% end %>
 </article>
+
+<nav><%= link_to "Create new Project", new_project_path %></nav>

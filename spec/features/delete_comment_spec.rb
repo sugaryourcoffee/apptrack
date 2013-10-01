@@ -13,6 +13,7 @@ describe "delete the comment" do
 
     expect(current_path).to eq(project_track_path(app, track))
 
+    expect(page).to have_text("Comment successfully deleted!")
     expect(page).not_to have_text(comment.title)
   end
 

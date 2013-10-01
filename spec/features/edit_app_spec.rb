@@ -26,6 +26,8 @@ describe "edit application" do
     click_button "Update Project"
 
     expect(current_path).to eq(projects_path)
+
+    expect(page).to have_text("Application successfully updated!")
     expect(page).to have_text("Apptrack")
     expect(page).to have_text("feature requests and issues")
   end

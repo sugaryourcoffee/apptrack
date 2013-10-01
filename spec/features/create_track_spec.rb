@@ -24,6 +24,7 @@ describe "create track" do
 
     expect(current_path).to eq(project_track_path(app, Track.last))
 
+    expect(page).to have_text("Track successfully created!")
     expect(page).to have_text("New track title")
   end
 

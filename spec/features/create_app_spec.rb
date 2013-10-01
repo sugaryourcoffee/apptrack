@@ -19,7 +19,7 @@ describe "Create Application" do
     click_button "Create Project"
 
     expect(current_path).to eq(project_path(Project.last))
-
+    expect(page).to have_text "Application successfully created!"
     expect(page).to have_text "New application title"
   end
 

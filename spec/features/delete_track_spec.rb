@@ -12,6 +12,7 @@ describe "delete the track" do
 
     expect(current_path).to eq(project_path(app))
 
+    expect(page).to have_text("Track successfully deleted!")
     expect(page).not_to have_text(track.title)
   end
 
