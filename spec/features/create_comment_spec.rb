@@ -30,4 +30,17 @@ describe "create comment" do
     expect(page).to have_text "New comment title"
   end
 
+  it "should not create a new comment" do
+    app = Project.create(project_attributes)
+    track = app.tracks.create(track_attributes)
+
+    visit new_track_comment_path(track)
+
+    expect {
+      click_button "Create Comment"
+    }.not_to change(Comment, :count)
+
+    expect(page).to have_text("error")
+  end
+
 end

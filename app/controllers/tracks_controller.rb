@@ -12,12 +12,12 @@ class TracksController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @track = @project.tracks.create(track_params)
-    if @track
+    @track = @project.tracks.build(track_params)
+    if @track.save
       redirect_to project_track_path(@project, @track), 
                   notice: "Track successfully created!"
     else
-      render new
+      render :new
     end
   end
 
@@ -34,7 +34,7 @@ class TracksController < ApplicationController
       redirect_to project_track_path(@project, @track), 
                   notice: "Track successfully updated!"
     else
-      render update
+      render :edit
     end
   end
 

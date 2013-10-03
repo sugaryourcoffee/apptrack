@@ -1,0 +1,18 @@
+<% if attribute.errors.any? %>
+  <section>
+    <header>
+      <h2>
+        The <%= attribute.class.name.titleize.downcase %> could not be saved.
+      </h2>
+      <h3>
+        Please correct the following 
+        <%= pluralize(attribute.errors.count, "error") %>:
+      </h3>
+    </header>
+    <ul>
+      <% attribute.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

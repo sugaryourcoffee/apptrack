@@ -31,4 +31,18 @@ describe "edit track" do
     expect(page).to have_text "Updated track description"
   end
 
+  it "should not update the track" do
+    app = Project.create(project_attributes)
+    track = app.tracks.create(track_attributes)
+
+    visit edit_project_track_path(app, track)
+
+    fill_in "Title", with: " "
+
+    click_button "Update Track"
+
+    expect(current_path).to eq(project_track_path(app, track))
+
+    expect(page).to have_text("error")
+  end
 end

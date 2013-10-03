@@ -23,4 +23,17 @@ describe "Create Application" do
     expect(page).to have_text "New application title"
   end
 
+  it "should not create an application without required attributes" do
+    visit new_project_path
+
+    fill_in "Title", with: " "
+    fill_in "Description", with: "A description of the new application"
+
+    expect {
+      click_button "Create Project"
+    }.not_to change(Project, :count)
+
+    expect(current_path).to eq(projects_path)
+    expect(page).to have_text("error")
+  end
 end

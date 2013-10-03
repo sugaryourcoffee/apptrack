@@ -33,4 +33,20 @@ describe "edit comment" do
     expect(page).to have_text "Updated comment"
   end
 
+  it "should not update the comment" do
+    app = Project.create(project_attributes)
+    track = app.tracks.create(track_attributes)
+    comment = track.comments.create(comment_attributes)
+
+    visit edit_track_comment_path(app, track)
+
+    fill_in "Title", with: " "
+
+    click_button "Update Comment"
+
+    expect(current_path).to eq(track_comment_path(app, track))
+
+    expect(page).to have_text("error")
+  end
+
 end

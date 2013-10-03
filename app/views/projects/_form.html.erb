@@ -1,4 +1,5 @@
 <%= form_for @project do |f| %>
+  <%= render partial: "shared/errors", locals: { attribute: @project } %>
   <p>
     <%= f.label :title %><br/>
     <%= f.text_field :title, autofocus: true %>

@@ -28,4 +28,16 @@ describe "create track" do
     expect(page).to have_text("New track title")
   end
 
+  it "should not create a new track" do
+    app = Project.create(project_attributes)
+
+    visit new_project_track_path(app)
+
+    expect {
+      click_button "Create Track"
+    }.not_to change(Track, :count)
+
+    expect(page).to have_text("error")
+  end
+
 end

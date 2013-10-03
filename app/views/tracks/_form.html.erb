@@ -1,0 +1,14 @@
+<%= form_for([@project, @track]) do |f| %>
+  <%= render partial: 'shared/errors', locals: { attribute: @track } %>
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br/>
+    <%= f.text_area :description, cols: 40, rows: 7 %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -32,4 +32,17 @@ describe "edit application" do
     expect(page).to have_text("feature requests and issues")
   end
 
+  it "should not update the application" do
+    app = Project.create(project_attributes)
+
+    visit edit_project_path(app)
+
+    fill_in "Title", with: " "
+
+    click_button "Update Project"
+
+    expect(current_path).to eq(project_path(app))
+    expect(page).to have_text("error")
+  end
+
 end

@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to @project, notice: "Application successfully created!"
     else
-      render new
+      render :new
     end
   end
 
@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to projects_path, notice: "Application successfully updated!"
     else
-      render edit
+      render :edit
     end
   end
 

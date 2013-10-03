@@ -7,13 +7,13 @@ class CommentsController < ApplicationController
 
   def create
     @track = Track.find(params[:track_id])
-    @comment = @track.comments.create(comment_params)
+    @comment = @track.comments.build(comment_params)
 
-    if @comment
+    if @comment.save
       redirect_to project_track_path(@track.project, @track), 
                   notice: "Comment successfully created!"
     else
-      render new
+      render :new
     end
   end
 
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       redirect_to project_track_path(@project, @track), 
                   notice: "Comment successfully updated!"
     else
-      render update
+      render :edit
     end
   end
 
