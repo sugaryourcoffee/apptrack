@@ -22,9 +22,11 @@
   </article>
 <% end %>
 
-<% content_for :sidebar do %>
-  <nav id='menu'>
-    <%= link_to "Back to '#{@project.title}'", project_path(@project) %><br/>
-    <%= link_to "Create new Comment", new_track_comment_path(@track) %>
-  </nav>
+<% content_for :functional_nav do %>
+  <ul>
+    <li><%= link_to "Back to '#{@project.title}'", 
+                    project_path(@project) %><br/></li>
+    <li><%= link_to "Create new Comment", 
+                    new_track_comment_path(@track) %></li>
+  </ul>
 <% end %>

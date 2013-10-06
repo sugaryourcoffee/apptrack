@@ -17,6 +17,8 @@
   <% end %>
 </article>
 
-<% content_for :sidebar do %>
-  <nav id='menu'><%= link_to "Create new Project", new_project_path %></nav>
+<% content_for :functional_nav do %>
+  <ul>
+    <li><%= link_to "Create new Project", new_project_path %></li>
+  </ul>
 <% end %>
