@@ -1,5 +1,7 @@
 <h1><%= pluralize(@projects.size, "project") %></h1>
 
+<%= currently_at 'Projects' %>
+
 <article>
   <% @projects.each do |project| %>
     <header>
@@ -15,4 +17,6 @@
   <% end %>
 </article>
 
-<nav><%= link_to "Create new Project", new_project_path %></nav>
+<% content_for :sidebar do %>
+  <nav id='menu'><%= link_to "Create new Project", new_project_path %></nav>
+<% end %>

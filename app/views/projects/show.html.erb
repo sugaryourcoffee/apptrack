@@ -1,5 +1,7 @@
 <h1><%= @project.title %></h1>
 
+<%= currently_at 'Projects' %>
+
 <article>
   <header><%= @project.title %></header>
   <p><%= @project.description %></p>
@@ -27,7 +29,7 @@
   </article>
 <% end %>
 
-<p>
-  <%= link_to "All Applications", projects_path %> |
-  <%= link_to "Create new Track", new_project_track_path(@project) %>
-</p>
+<% content_for :sidebar do %>
+  <p><%= link_to "All Applications", projects_path %></p>
+  <p><%= link_to "Create new Track", new_project_track_path(@project) %></p>
+<% end %>

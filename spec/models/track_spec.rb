@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: tracks
+#
+#  id          :integer          not null, primary key
+#  title       :string(255)
+#  description :string(255)
+#  version     :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  project_id  :integer
+#
+
 require 'spec_helper'
 
 describe "Track" do

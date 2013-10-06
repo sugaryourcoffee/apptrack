@@ -1,0 +1,56 @@
+section#sidebar {
+  background-color: #edeae6;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: #666;
+  font: {
+    size: 0.8em;
+    weight: normal;
+  }
+  
+  line-height: 1.3em;
+  padding: 10px;
+
+  a,
+  a:link,
+  a:visited {
+    color: #666;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:active {
+    color: #bc471b;
+  }
+
+  section {
+  }
+
+  #functional_nav {
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  #recent_activity {
+    header {
+      background-color: #808080;
+      border-bottom: 5px solid #606060;
+      margin: 10px -10px;
+      padding: 5px 10px 0 10px;
+      h1#recent {
+        background: transparent url('/assets/text_recent_activity.png')
+                    no-repeat scroll top left;
+        margin: 5px 0 0 0;
+        padding: 0;
+        text-indent: -999px;
+      }
+    }
+  }
+}

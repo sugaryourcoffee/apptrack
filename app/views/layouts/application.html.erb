@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Apptrack</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all", 
+                             "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <%= render "layouts/header" %>
+  <%= image_tag "tagline.png",
+                alt: "Application Management made Easy",
+                id: "tagline" %>
   <%= render "layouts/flashes" %>
 
-  <%= yield %>
+  <div class="container">
+    <section id="content">
+      <%= yield %>
+    </section>
+    <section id="sidebar">
+      <%= yield :sidebar %>
+      <section id="recent_activity">
+        <header><h1 class="ir" id="recent">Recent Activity</h1></header>
+        <p>Added a new project that is quite large</p>
+        <p>Updated a project</p>
+        <p>Did something new</p>
+      </section>      
+    </section>
+  </div>
+
+  <%= render "layouts/footer" %>
 
 </body>
 </html>

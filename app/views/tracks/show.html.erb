@@ -1,3 +1,5 @@
+<%= currently_at 'Projects' %>
+
 <article>
   <header><%= @track.title %></header>
   <p><%= @track.description %></p>
@@ -20,6 +22,9 @@
   </article>
 <% end %>
 
-<p>
-  <%= link_to "Back to '#{@project.title}'", project_path(@project) %> |
-  <%= link_to "Create new Comment", new_track_comment_path(@track) %></p>
+<% content_for :sidebar do %>
+  <nav id='menu'>
+    <%= link_to "Back to '#{@project.title}'", project_path(@project) %><br/>
+    <%= link_to "Create new Comment", new_track_comment_path(@track) %>
+  </nav>
+<% end %>

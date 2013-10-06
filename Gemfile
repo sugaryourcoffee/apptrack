@@ -44,6 +44,8 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'annotate', group: :development
+
 group :test, :development do
   gem "rspec-rails", "2.13.1"
   gem "guard-rspec", "3.0.3"

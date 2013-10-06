@@ -1,3 +1,5 @@
+<%= currently_at 'Projects' %>
+
 <%= form_for([@track, @comment]) do |f| %>
   <%= render partial: 'shared/errors', locals: { attribute: @comment } %>
   <p>
@@ -9,6 +11,7 @@
     <%= f.text_area :comment, cols: 40, rows: 7 %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit %> |
+    <%= link_to "Cancel", :back %>
   </p>
 <% end %>
