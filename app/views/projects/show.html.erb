@@ -1,33 +1,38 @@
-<h1><%= @project.title %></h1>
-
 <%= currently_at 'Projects' %>
 
-<article>
-  <header><%= @project.title %></header>
+<article class="project">
+  <header><h1><%= @project.title %></h1></header>
   <p><%= @project.description %></p>
   <p>
     <%= link_to "Edit", edit_project_path(@project) %> | 
     <%= link_to "Delete", project_path(@project), 
                 method: :delete, 
-                data: { confirm: 'Are you sure to delete the application?' } %>
+                data: { 
+                  confirm: 'Are you sure to delete the application?' 
+                } 
+    %>
   </p>
 </article>
 
 <h2><%= pluralize(@project.tracks.size, "Track") %></h2>
 
-<% @project.tracks.each do |track| %>
-  <article>
-    <header>
-      <%= link_to track.title, project_track_path(@project, track) %>
-    </header>
-    <p><%= track.description %></p>
-    <p>
-      <%= link_to "Delete Track", project_track_path(@project, track),
-                  method: :delete, 
-                  data: { confirm: "Are you sure to delete the track?" } %>
-    </p>
-  </article>
-<% end %>
+<ul id="tracks">
+  <table> 
+    <thead>
+      <th>Title</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <% @project.tracks.each do |track| %>
+        <tr data-link="<%= project_track_path(@project, track) %>"
+            class="<%= cycle('list_line_odd', 'list_line_even') %> data">
+          <td class="first"><%= track.title %></td>
+          <td class="last"><%= track.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</ul>
 
 <% content_for :functional_nav do %>
   <ul>
