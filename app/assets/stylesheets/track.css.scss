@@ -1,4 +1,4 @@
-article.project {
+article.track {
 
   background-color: #edeae6;
   -webkit-border-top-left-radius: 10px;
@@ -30,8 +30,7 @@ article.project {
   }
 }
 
-ul#tracks {
-/*
+ul#comments {
   background-color: #edeae6;
   -webkit-border-top-left-radius: 10px;
   -webkit-border-bottom-left-radius: 10px;
@@ -39,7 +38,7 @@ ul#tracks {
   -moz-border-radius-bottomleft: 10px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  */
+  
   color: #666;
   font: {
     size: 0.8em;
@@ -47,56 +46,9 @@ ul#tracks {
   }
 
   list-style: none;
-  padding: 0px;
+  padding: 10px;
 
-  table {
-    line-height: 2.5em;
-    font-size: 1.1em;
-
-    .list_line_even {
-      background: #f8f8ff;
-    }
-
-    .list_line_odd {
-      background: #edeae6;
-    }
-
-    th {
-      padding: 0 10px 0 10px;
-    }
-
-    td.first {
-      padding: 0 0 0 10px; 
-    }
-
-    td.middle {
-      padding: 0 10px 0 10px;
-    }
-
-    td.last {
-      padding: 0 10px 0 0;
-      text-align: right;
-    }
-
-    thead {
-      background-color: #808080;
-      color: #fff;
-      border-bottom: 5px solid #606060;
-      margin: 10px -10px;
-      padding: 5px 10px 0 10px;
-    }
-
-    tr.data {
-      margin: 10px;
-      &:hover {
-        background-color: #865140;
-        color: #ffffff;
-        cursor: pointer;
-      }
-    }
-  }
-
-  article.track {
+  article.comment {
     header {
       background-color: #808080;
       color: #fff;

@@ -14,5 +14,7 @@
  *= require sidebar
  *= require navigation
  *= require notifications
+ *= require buttons
  *= require project
+ *= require track
  */
