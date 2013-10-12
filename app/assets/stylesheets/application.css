@@ -17,4 +17,6 @@
  *= require buttons
  *= require project
  *= require track
+ *= require forms
+ *= require errors
  */
