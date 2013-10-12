@@ -1,21 +1,24 @@
-<h1><%= pluralize(@projects.size, "project") %></h1>
-
 <%= currently_at 'Projects' %>
 
-<article>
+<ul id="projects">
   <% @projects.each do |project| %>
-    <header>
-      <%= link_to project.title, project_path(project) %>
-    </header>
-    <p>
-      <%= truncate(project.description, length: 80, separator: ' ') %> 
-    </p>
-    <p>
-      <%= pluralize(project.tracks.size, "track") %>
-    </p>
-    <p><%= link_to "Edit", edit_project_path(project) %></p>
+    <li>
+      <article class="project">
+        <header data-link="<%= project_path(project) %>">
+          <h2><%= link_to project.title, project_path(project) %></h2>
+        </header>
+        <p>
+          <%= truncate(project.description, length: 80, separator: ' ') %> 
+        </p>
+        <p>
+          <%= pluralize(project.tracks.size, "track") %>
+        </p>
+        <p><%= link_to "Edit", edit_project_path(project), 
+                       class: "button" %></p>
+      </article>
+    </li>
   <% end %>
-</article>
+</ul>
 
 <% content_for :functional_nav do %>
   <ul>

@@ -5,7 +5,11 @@
   <p><%= @track.description %></p>
   <p><%= @track.version %></p>
   <p><%= link_to "Edit", edit_project_track_path(@project, @track),
-                 class: "button" %></p>
+                 class: "button" %> |
+     <%= link_to "Delete", project_track_path(@project, @track),
+                 method: :delete,
+                 data: { confirm: "Are you sure to delete the track?" } %> 
+  </p>
 </article>
 
 <h2><%= pluralize(@track.comments.size, "Comment") %></h2>
@@ -26,10 +30,16 @@
   </ul>
 <% end %>
 
+<% content_for :secondary_nav do %>
+  
+  <%= breadcrumbs [link_to('Projects', projects_path),
+                   link_to(truncate(@project.title), project_path(@project)),
+                   truncate(@track.title)] %>
+
+<% end %>
+
 <% content_for :functional_nav do %>
   <ul>
-    <li><%= link_to "Back to '#{@project.title}'", 
-                    project_path(@project) %><br/></li>
     <li><%= link_to "Create new Comment", 
                     new_track_comment_path(@track) %></li>
   </ul>

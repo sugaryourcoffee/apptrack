@@ -7,7 +7,7 @@ describe "Navigating projects" do
 
     visit project_url(app)
 
-    click_link "All Applications"
+    first(:link, "Projects").click
 
     expect(current_path).to eq(projects_path)
 
@@ -18,7 +18,7 @@ describe "Navigating projects" do
 
     visit projects_url
 
-    click_link "Cool application"
+    click_link app.title
 
     expect(current_path).to eq(project_path(app))
   end
@@ -40,7 +40,7 @@ describe "Navigating projects" do
 
     visit project_track_path(app, track)
 
-    click_link "Back to '#{app.title}'"
+    click_link "#{app.title}"
 
     expect(current_path).to eq(project_path(app))
   end

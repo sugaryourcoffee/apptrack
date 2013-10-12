@@ -24,3 +24,35 @@ nav#main_nav {
   }
 }
 
+nav#breadcrumbs {
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: #f0f0f0;
+  margin: 0 0 0 20px;
+
+  li {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 10px 6px;
+    a,
+    a:link,
+    a:visited {
+      padding-right: 12px;
+      color: #000;
+    }
+
+    &:after {
+      content: " \00bb";
+    }
+
+    &:last-child {
+      &:after {
+        content: "";
+      }
+    }
+  }
+}

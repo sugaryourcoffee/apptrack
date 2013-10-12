@@ -27,7 +27,10 @@
       <% @project.tracks.each do |track| %>
         <tr data-link="<%= project_track_path(@project, track) %>"
             class="<%= cycle('list_line_odd', 'list_line_even') %> data">
-          <td class="first"><%= track.title %></td>
+          <td 
+            class="first"><%= link_to track.title,
+                                      project_track_path(@project, track) %>
+          </td>
           <td class="middle"><%= track.description %></td>
           <td class="last"><%= track.comments.count %></td>
         </tr>
@@ -36,9 +39,13 @@
   </table>
 </ul>
 
+<% content_for :secondary_nav do %>
+  <%= breadcrumbs [link_to('Projects', projects_path),
+                   truncate(@project.title) ] %>
+<% end %>
+
 <% content_for :functional_nav do %>
   <ul>
-    <li><%= link_to "All Applications", projects_path %></li>
     <li><%= link_to "Create new Track", new_project_track_path(@project) %></li>
   </ul>
 <% end %>

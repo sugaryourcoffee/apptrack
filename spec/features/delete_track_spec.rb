@@ -6,9 +6,9 @@ describe "delete the track" do
     app = Project.create(project_attributes)
     track = app.tracks.create(track_attributes)
 
-    visit project_path(app)
+    visit project_track_path(app, track)
 
-    click_link "Delete Track"
+    click_link "Delete"
 
     expect(current_path).to eq(project_path(app))
 

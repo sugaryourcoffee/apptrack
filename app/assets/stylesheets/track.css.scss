@@ -1,11 +1,17 @@
 article.track {
 
   background-color: #edeae6;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
   -webkit-border-top-left-radius: 10px;
   -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
   -moz-border-radius-topleft: 10px;
   -moz-border-radius-bottomleft: 10px;
+  border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   color: #666;
   font: {
@@ -32,10 +38,16 @@ article.track {
 
 ul#comments {
   background-color: #edeae6;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
   -webkit-border-top-left-radius: 10px;
   -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-bottomright: 10px;
   -moz-border-radius-topleft: 10px;
   -moz-border-radius-bottomleft: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   
