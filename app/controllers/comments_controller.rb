@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
   def create
     @track = Track.find(params[:track_id])
     @comment = @track.comments.build(comment_params)
+    @project = @track.project
 
     if @comment.save
       redirect_to project_track_path(@track.project, @track), 
