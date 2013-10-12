@@ -1,3 +1,8 @@
-<h1>Edit <%= @comment.title %></h1>
-
 <%= render 'form' %>
+
+<%= content_for :secondary_nav do %>
+  <%= breadcrumbs [ link_to("Projects", projects_path),
+                    link_to(@project.title, project_path(@project)),
+                    link_to(@track.title, project_track_path(@project, @track)),
+                    "Edit Comment" ] %>
+<% end %>

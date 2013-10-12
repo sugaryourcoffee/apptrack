@@ -1,3 +1,7 @@
-<h1>Create new project</h1>
-
 <%= render "form" %>
+
+<% content_for :secondary_nav do %>
+  <%= breadcrumbs [link_to('Projects', projects_path),
+                   "Create" ] %>
+<% end %>
+

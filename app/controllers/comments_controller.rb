@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @track = Track.find(params[:track_id])
+    @project = @track.project
   end
 
   def create
@@ -20,6 +21,7 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @track = Track.find(params[:track_id])
+    @project = @track.project
   end
 
   def update
