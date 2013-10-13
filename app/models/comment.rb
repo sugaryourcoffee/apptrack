@@ -14,4 +14,13 @@ class Comment < ActiveRecord::Base
   belongs_to :track
 
   validates :title, :comment, presence: true
+
+  def self.recent(count)
+    order('updated_at desc').limit(3)
+  end
+
+  def track
+    Track.find(track_id)
+  end
+
 end

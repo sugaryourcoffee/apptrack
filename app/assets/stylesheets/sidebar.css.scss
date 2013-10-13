@@ -18,13 +18,13 @@ section#sidebar {
   a,
   a:link,
   a:visited {
-    color: #666;
+    color: #4169e1;
     text-decoration: none;
   }
 
   a:hover,
   a:active {
-    color: #bc471b;
+    text-decoration: underline;
   }
 
   section {
@@ -42,13 +42,13 @@ section#sidebar {
     a:visited {
       font-size: 1.1em;
       line-height: 1.25em;
-      color: #666;
+      color: #4169e1;
       text-decoration: none;
     }
 
     a:hover,
     a:active {
-      color: #bc471b;
+      text-decoration: underline;
     }
   }
 
@@ -65,6 +65,10 @@ section#sidebar {
         padding: 0;
         text-indent: -999px;
       }
+    }
+
+    em {
+      color: lighten(#666, 25%);
     }
   }
 }

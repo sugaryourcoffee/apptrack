@@ -17,6 +17,10 @@ class Track < ActiveRecord::Base
 
   validates :title, :description, presence: true
 
+  def self.recent(count)
+    order('updated_at desc').limit(count)
+  end
+
   def project
     Project.find(project_id)
   end

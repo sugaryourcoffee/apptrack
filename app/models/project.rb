@@ -14,4 +14,9 @@ class Project < ActiveRecord::Base
   has_many :tracks, dependent: :destroy
 
   validates :title, :description, presence: :true
+
+  def self.recent(count)
+    order('updated_at desc').limit(count)
+  end
+
 end

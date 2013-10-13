@@ -1,0 +1,9 @@
+<% Project.recent(3).each do |project| %>
+  <p><%= recent_project(project) %></p>
+<% end %>
+<% Track.recent(3).each do |track| %>
+  <p><%= recent_track(track) %></p>
+<% end %>
+<% Comment.recent(3).each do |comment| %>
+  <p><%= recent_comment(comment) %></p>
+<% end %>
