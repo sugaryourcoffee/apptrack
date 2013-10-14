@@ -18,7 +18,7 @@ describe "Navigating projects" do
 
     visit projects_url
 
-    click_link app.title
+    first(:link, app.title).click
 
     expect(current_path).to eq(project_path(app))
   end
@@ -29,7 +29,7 @@ describe "Navigating projects" do
 
     visit project_path(app)
 
-    click_link "New Feature Track"
+    first(:link, track.title).click
 
     expect(current_path).to eq(project_track_path(app, track))
   end
@@ -40,7 +40,7 @@ describe "Navigating projects" do
 
     visit project_track_path(app, track)
 
-    click_link "#{app.title}"
+    first(:link, app.title).click
 
     expect(current_path).to eq(project_path(app))
   end
