@@ -1,0 +1,27 @@
+<%= form_for @user do |f| %>
+  <%= render partial: "shared/errors", locals: { attribute: @user } %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true %>
+      </li>
+      <li>
+        <%= f.label :email, "E-Mail" %>
+        <%= f.text_field :email %>
+      </li>
+      <li>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </li>
+      <li>
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+      </li>
+      <p>
+        <%= f.submit "Create my account", class: "button" %> | 
+        <%= link_to "Cancel", :back %>
+      </p>
+    </ol>
+  </fieldset>
+<% end %>

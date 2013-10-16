@@ -2,6 +2,10 @@ Apptrack::Application.routes.draw do
 
   root "projects#index"
 
+  resources :users
+  
+  match '/signup', to: 'users#new', via: 'get'
+
   resources :projects do
     resources :tracks
   end

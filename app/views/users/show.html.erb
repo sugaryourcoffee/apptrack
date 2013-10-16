@@ -1,0 +1,14 @@
+<% provide(:title, @user.name) %>
+
+<%= currently_at 'Members' %>
+
+<aside>
+  <section>
+    <h1>
+      <%= gravatar_for(@user) %>
+      <%= @user.name %>
+      <%= @user.email %>
+    </h1>
+  </section>
+</aside>
+
