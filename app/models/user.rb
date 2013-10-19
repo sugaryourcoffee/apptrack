@@ -24,5 +24,8 @@ class User < ActiveRecord::Base
                     format: {with: EMAIL_PATTERN}, 
                     uniqueness: {case_sensitive: false}
 
+  def self.recent(count)
+    order('updated_at desc').limit(count)
+  end
 
 end

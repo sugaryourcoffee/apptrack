@@ -1,5 +1,16 @@
 module ApplicationHelper
 
+  def recent_user(user)
+    message = "'#{link_to(user.name, user_path(user))}'"
+    if user.updated_at == user.created_at
+      message << " has signed up for apptrack"
+    else
+      message << " has updated the profile"
+    end
+    message << " <em>#{time_ago_in_words(user.updated_at)} ago</em>"
+    message.html_safe 
+  end
+
   def recent_project(project)
     message = ""
     if project.updated_at == project.created_at

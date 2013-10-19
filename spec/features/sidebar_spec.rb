@@ -2,7 +2,13 @@ require 'spec_helper'
 
 describe 'Sidebar' do
 
-  it "should show recently added users"
+  it "should show recently added users" do
+    user = User.create(user_attributes)
+
+    visit root_path
+
+    expect(page).to have_text(user.name)
+  end
 
   it "should show recently added and updated projects" do
     app = Project.create(project_attributes)
