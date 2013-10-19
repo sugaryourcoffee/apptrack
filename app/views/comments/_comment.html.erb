@@ -1,0 +1,6 @@
+<tr>
+  <td><%= comment.title %></td>
+  <td><%= comment.comment %></td>
+  <td><%= link_to "Show", project_track_path(comment.track.project, comment.track) %></td>
+  <td><%= link_to "Edit", edit_track_comment_path(comment.track, comment) %></td>
+</tr>

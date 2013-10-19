@@ -2,13 +2,74 @@
 
 <%= currently_at 'Members' %>
 
-<aside>
-  <section>
-    <h1>
+<article>
+  <header>
+    <aside>
       <%= gravatar_for(@user) %>
-      <%= @user.name %>
-      <%= @user.email %>
-    </h1>
+    </aside>
+    <hgroup>
+      <h1><%= @user.name %></h1>
+      <h2><%= @user.email %></h2>
+    </hgroup>
+  </header>
+
+  <section>
+    <header>
+      <h1>My Projects</h1>
+    </header>
+
+    <% if @user.projects.any? %>
+      <table>
+        <thead>
+          <tr><th>Title</th><th>Description</th><th></th><th></th></tr>
+        </thead>
+        <tbody>
+          <%= render @user.projects %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>You don't have projects yet</p>
+    <% end %>
+    <p>
+      <%= link_to "Create new project", new_project_path, class: "button" %>
+    </p>
   </section>
-</aside>
+
+  <section>
+    <header>
+      <h1>My Tracks</h1>
+    </header>
+    <% if @user.tracks.any? %>
+      <table>
+        <thead>
+          <tr><th>Title</th><th>Description</th><th></th><th></th></tr>
+        </thead>
+        <tbody>
+          <%= render @user.tracks %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>You don't have tracks yet</p>
+    <% end %>
+  </section>
+
+  <section>
+    <header>
+      <h1>My Comments</h1>
+    </header>
+    <% if @user.comments.any? %>
+      <table>
+        <thead>
+          <tr><th>Title</th><th>Comment</th><th></th><th></th></tr>
+        </thead>
+        <tbody>
+          <%= render @user.comments %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>You don't have comments yet</p>
+    <% end %>
+  </section>
+
+</article>
 

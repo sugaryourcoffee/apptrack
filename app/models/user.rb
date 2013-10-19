@@ -11,6 +11,10 @@
 
 class User < ActiveRecord::Base
 
+  has_many :projects
+  has_many :tracks
+  has_many :comments
+
   has_secure_password
   validates :password, length: { minimum: 6 }
   validates :name, presence: true, length: { maximum: 50 }

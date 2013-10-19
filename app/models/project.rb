@@ -12,6 +12,7 @@
 
 class Project < ActiveRecord::Base
   has_many :tracks, dependent: :destroy
+  belongs_to :user
 
   validates :title, :description, presence: :true
 

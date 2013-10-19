@@ -16,6 +16,7 @@
  *= require notifications
  *= require buttons
  *= require project
+ *= require users
  *= require track
  *= require forms
  *= require errors

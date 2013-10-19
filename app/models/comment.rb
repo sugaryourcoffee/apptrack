@@ -12,6 +12,7 @@
 
 class Comment < ActiveRecord::Base
   belongs_to :track
+  belongs_to :user
 
   validates :title, :comment, presence: true
 
