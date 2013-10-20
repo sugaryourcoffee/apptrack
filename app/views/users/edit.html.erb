@@ -1,0 +1,12 @@
+<%= provide(:title, "Edit #{@user.name}") %>
+
+<% currently_at("Members") %>
+
+<%= render "form" %>
+
+<% content_for :secondary_nav do %>
+  <%= breadcrumbs [link_to('Users', users_path),
+                   link_to(@user.name, user_path(@user)),
+                   "Update your account" ] %>
+<% end %>
+

@@ -2,8 +2,9 @@
   <nav id="utility">
     <p>
       <% if signed_in? %>
-        You are signed in as <strong><%= current_user.name %></strong>
-        <%= link_to "[Your Account]", current_user %> |
+        You are signed in as 
+        <strong><%= link_to current_user.name, current_user %></strong>
+        <%= link_to "[Your Account]", edit_user_path(current_user) %> |
         <%= link_to "[Sign out]", signout_path, method: "delete" %>
       <% else %>
         <%= link_to "[Sign in]", signin_path %>

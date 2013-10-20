@@ -12,7 +12,7 @@ describe "User signup page" do
     fill_in "Password", with: "pa55w0rd"
     fill_in "Confirmation", with: "pa55w0rd"
 
-    expect { click_button "Create my account" }.to change(User, :count)
+    expect { click_button "Create User" }.to change(User, :count)
 
     expect(page).to have_text('Pierre')
   end
@@ -25,7 +25,7 @@ describe "User signup page" do
     fill_in "Name", with: "Pierre"
     fill_in "E-Mail", with: "pierre@sugaryourcoffee.de"
 
-    expect { click_button "Create my account" }.not_to change(User, :count)
+    expect { click_button "Create User" }.not_to change(User, :count)
 
     expect(current_path).to eq users_path
     expect(page).to have_text "error"

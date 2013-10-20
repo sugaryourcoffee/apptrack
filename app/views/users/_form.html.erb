@@ -19,9 +19,15 @@
         <%= f.password_field :password_confirmation %>
       </li>
       <p>
-        <%= f.submit "Create my account", class: "button" %> | 
+        <%= f.submit class: "button" %> | 
         <%= link_to "Cancel", :back %>
       </p>
+      <% if signed_in? %>
+        <p>
+          <%= gravatar_for @user %>
+          <a href="http://gravatar.com/emails">change</a>
+        </p>
+      <% end %>
     </ol>
   </fieldset>
 <% end %>
