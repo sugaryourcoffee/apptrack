@@ -13,9 +13,18 @@
     </hgroup>
   </header>
 
+  <h3>My Statistics</h3>
   <p>
-    <%= @user %>
+    You own 
+    <strong><%= pluralize(@user.projects.count, "project") %></strong> 
+    and have authored
+    <strong><%= pluralize(@user.tracks.count, "track") %></strong> 
+    and
+    <strong><%= pluralize(@user.comments.count, "comment") %></strong>.
   </p>
+
+  <h3>My Profile</h3>
+  <p>You can add your profile at your account</p>
 </article>
 
 <section class="item">

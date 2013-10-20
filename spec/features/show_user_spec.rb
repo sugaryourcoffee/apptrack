@@ -10,6 +10,13 @@ describe "User show page" do
     expect(page).to have_text user.name
     expect(page).to have_text user.email
 
+    expect(page).to have_text "0 projects"
+    expect(page).to have_text "0 tracks"
+    expect(page).to have_text "0 comments"
+
+    expect(page).to have_text "My Profile"
+    expect(page).to have_text "You can add your profile at your account"
+
     expect(page).to have_text "My Projects"
     expect(page).to have_text "You don't have projects yet"
     expect(page).to have_link "Create new project"
