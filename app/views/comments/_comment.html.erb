@@ -1,6 +1,11 @@
-<tr>
-  <td><%= comment.title %></td>
+<tr class="<%= cycle('list_line_odd', 'list_line_even') %>" >
+  <th><%= comment.title %></th>
   <td><%= comment.comment %></td>
-  <td><%= link_to "Show", project_track_path(comment.track.project, comment.track) %></td>
-  <td><%= link_to "Edit", edit_track_comment_path(comment.track, comment) %></td>
+  <td>
+    <%= link_to "Show", project_track_path(comment.track.project, 
+                                           comment.track) %>
+  </td>
+  <td>
+    <%= link_to "Edit", edit_track_comment_path(comment.track, comment) %>
+  </td>
 </tr>

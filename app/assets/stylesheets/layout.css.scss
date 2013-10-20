@@ -32,6 +32,17 @@ header#page_header {
   margin-left: 10px;
 }
 
+a,
+a:link,
+a:visited {
+  color: #4169e1;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 div.container {
   overflow: hidden;
   padding: 0 20px;
@@ -59,8 +70,9 @@ footer#page_footer {
 
       a {
         padding: 5px 10px;
-        &:link
-        &:hover
+        &,
+        &:link,
+        &:hover,
         &:visited,
         &:active {
           color: #fff;

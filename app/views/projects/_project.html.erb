@@ -1,5 +1,5 @@
-<tr>
-  <td><%= project.title %></td>
+<tr class="<%= cycle('list_line_odd', 'list_line_even') %>" >
+  <th><%= project.title %></th>
   <td><%= project.description %></td>
   <td><%= link_to "Show", project_path(project) %></td>
   <td><%= link_to "Edit", edit_project_path(project) %></td>
