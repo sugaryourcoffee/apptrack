@@ -22,6 +22,7 @@ describe User do
     expect(user).to respond_to(:password)
     expect(user).to respond_to(:password_confirmation)
     expect(user).to respond_to(:authenticate)
+    expect(user).to respond_to(:remember_token)
   end
 
   it "requires a name" do
@@ -37,6 +38,13 @@ describe User do
     expect(user).to be_valid
     expect(user.errors[:password].any?).to be_false
     expect(user.errors[:password_confirmation].any?).to be_false
+  end
+
+  it "should have a non empty remember token" do
+    user = User.new(user_attributes)
+
+    expect { user.save }.to change(User, :count).by(1) 
+    expect(user.remember_token).not_to be_blank
   end
 
   it "should not be valid when password and confirmation are empty" do

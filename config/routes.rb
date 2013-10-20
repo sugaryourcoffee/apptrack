@@ -3,8 +3,11 @@ Apptrack::Application.routes.draw do
   root "projects#index"
 
   resources :users
-  
-  match '/signup', to: 'users#new', via: 'get'
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match '/signup',  to: 'users#new',        via: 'get'
+  match '/signin',  to: 'sessions#new',     via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 
   resources :projects do
     resources :tracks

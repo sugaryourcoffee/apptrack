@@ -1,0 +1,18 @@
+<%= form_for :session, url: sessions_path do |f| %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= f.label :email, "E-Mail" %>
+        <%= f.text_field :email %>
+      </li>
+
+      <li>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </li>
+
+      <p><%= f.submit "Sign in now!", class: "ok-button" %><p>
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    </ol>
+  </fieldset>
+<% end %>
