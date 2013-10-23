@@ -5,6 +5,8 @@ describe "User" do
   it "should update user" do
     user = User.create(user_attributes)
 
+    valid_signin(user)
+
     visit edit_user_path(user)
 
     fill_in "Name", with: "Pierre Sugar"
@@ -19,6 +21,8 @@ describe "User" do
 
   it "should not update user with invalid password" do
     user = User.create(user_attributes)
+
+    valid_signin(user)
 
     visit edit_user_path(user)
 
