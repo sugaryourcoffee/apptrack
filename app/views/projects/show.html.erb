@@ -2,6 +2,14 @@
 
 <article class="project">
   <header><h1><%= @project.title %></h1></header>
+  <p>
+    <% if @project.user %>
+      <%= gravatar_for(@project.user) %>
+      <%= @project.user.name %>
+    <% else %>
+      No user assigned!
+    <% end %>
+  </p>
   <p><%= @project.description %></p>
   <p>
     <%= link_to "Edit", edit_project_path(@project), class: "button" %> 
