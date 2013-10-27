@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe "edit comment" do
+  let(:user) { User.create(user_attributes) }
+
+  before { valid_signin user }
 
   it "should show the edit page" do
     app = Project.create(project_attributes)
     track = app.tracks.create(track_attributes)
-    comment = track.comments.create(comment_attributes)
+    comment = track.comments.create(comment_attributes(user: user))
 
     visit project_track_path(app, track)
 
@@ -17,7 +20,7 @@ describe "edit comment" do
   it "should update the comment" do
     app = Project.create(project_attributes)
     track = app.tracks.create(track_attributes)
-    comment = track.comments.create(comment_attributes)
+    comment = track.comments.create(comment_attributes(user: user))
 
     visit edit_track_comment_path(track, comment)
 
@@ -36,7 +39,7 @@ describe "edit comment" do
   it "should not update the comment" do
     app = Project.create(project_attributes)
     track = app.tracks.create(track_attributes)
-    comment = track.comments.create(comment_attributes)
+    comment = track.comments.create(comment_attributes(user: user))
 
     visit edit_track_comment_path(app, track)
 

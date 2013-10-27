@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "create comment" do
+  let(:user) { User.create(user_attributes) }
+
+  before { valid_signin user }
 
   it "should show new comment form" do
     app = Project.create(project_attributes)
@@ -28,6 +31,7 @@ describe "create comment" do
 
     expect(page).to have_text "Comment successfully created!"
     expect(page).to have_text "New comment title"
+    expect(Comment.last.user).to eq user
   end
 
   it "should not create a new comment" do

@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "create track" do
+  let(:user) { User.create(user_attributes) }
+
+  before { valid_signin(user) }
 
   it "should show the new track form" do
     app = Project.create(project_attributes)
@@ -26,6 +29,7 @@ describe "create track" do
 
     expect(page).to have_text("Track successfully created!")
     expect(page).to have_text("New track title")
+    expect(Track.last.user).to eq user
   end
 
   it "should not create a new track" do

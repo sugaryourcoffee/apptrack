@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
 
+  before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :owner,          only: [:edit, :update, :destroy]
+
   def new
     @comment = Comment.new
     @track = Track.find(params[:track_id])
@@ -9,6 +12,7 @@ class CommentsController < ApplicationController
   def create
     @track = Track.find(params[:track_id])
     @comment = @track.comments.build(comment_params)
+    @comment.user = current_user
     @project = @track.project
 
     if @comment.save
@@ -20,13 +24,11 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
     @track = Track.find(params[:track_id])
     @project = @track.project
   end
 
   def update
-    @comment = Comment.find(params[:id])
     @track = Track.find(params[:track_id])
     @project = @track.project
 
@@ -39,7 +41,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @track = Track.find(params[:track_id])
     @project = @track.project
     @comment.destroy
@@ -51,5 +52,13 @@ class CommentsController < ApplicationController
 
     def comment_params
       params.require(:comment).permit(:title, :comment)
+    end
+
+    def owner
+      @comment = Comment.find(params[:id])
+      unless current_user?(@comment.user)
+        flash[:error] = "Sorry, action only alowed by comment's owner"
+        redirect_to root_url
+      end
     end
 end

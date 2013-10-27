@@ -1,5 +1,8 @@
 class TracksController < ApplicationController
 
+  before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :owner,          only: [:edit, :update, :destroy]
+
   def show
     @track = Track.find(params[:id])
     @project = Project.find(params[:project_id])
@@ -13,6 +16,7 @@ class TracksController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @track = @project.tracks.build(track_params)
+    @track.user = current_user
     if @track.save
       redirect_to project_track_path(@project, @track), 
                   notice: "Track successfully created!"
@@ -22,12 +26,10 @@ class TracksController < ApplicationController
   end
 
   def edit
-    @track = Track.find(params[:id])
     @project = Project.find(params[:project_id])
   end
 
   def update
-    @track = Track.find(params[:id])
     @project = Project.find(params[:project_id])
 
     if @track.update(track_params)
@@ -40,7 +42,6 @@ class TracksController < ApplicationController
 
   def destroy
     @project = Project.find(params[:project_id])
-    @track = Track.find(params[:id])
     @track.destroy
     redirect_to project_path(@project), alert: "Track successfully deleted!"
   end
@@ -49,6 +50,14 @@ class TracksController < ApplicationController
 
     def track_params
       params.require(:track).permit(:title, :description)
+    end
+
+    def owner
+      @track = Track.find(params[:id])
+      unless current_user?(@track.user)
+        flash[:error] = "Sorry, action only alowed by track's owner"
+        redirect_to root_url
+      end
     end
 
 end

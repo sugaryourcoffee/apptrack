@@ -30,6 +30,8 @@ describe "User show page" do
     user = User.create(user_attributes)
     project = user.projects.create(project_attributes)
 
+    valid_signin user
+
     visit user_path user
 
     expect(page).to have_text project.title
@@ -50,6 +52,8 @@ describe "User show page" do
     user = User.create(user_attributes)
     project = Project.create(project_attributes)
     track = project.tracks.create(track_attributes(user: user))
+
+    valid_signin user
 
     visit user_path user
 
@@ -72,6 +76,8 @@ describe "User show page" do
     project = Project.create(project_attributes)
     track = project.tracks.create(track_attributes)
     comment = track.comments.create(comment_attributes(user: user))
+
+    valid_signin user
 
     visit user_path user
 

@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe "edit application" do
+  let(:user) { User.create(user_attributes) }
+
+  before { valid_signin(user) }
 
   it "should show the edit page" do
-    app = Project.create(project_attributes)
+    app = user.projects.create(project_attributes)
 
     visit project_path(app)
 
@@ -16,7 +19,7 @@ describe "edit application" do
   end
 
   it "should update the application" do
-    app = Project.create(project_attributes)
+    app = user.projects.create(project_attributes)
 
     visit edit_project_path(app)
 
@@ -33,7 +36,7 @@ describe "edit application" do
   end
 
   it "should not update the application" do
-    app = Project.create(project_attributes)
+    app = user.projects.create(project_attributes)
 
     visit edit_project_path(app)
 

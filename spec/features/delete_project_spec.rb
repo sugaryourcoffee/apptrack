@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe "delete the application" do
+  let(:user) { User.create(user_attributes) }
+
+  before { valid_signin(user) }
 
   it "should delete the application and show the project listing without the deleted project" do
-    app = Project.create(project_attributes)
+    app = user.projects.create(project_attributes)
 
     visit project_path(app)
 

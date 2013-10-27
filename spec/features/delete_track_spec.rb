@@ -1,10 +1,13 @@
 require 'spec_helper'
 
 describe "delete the track" do
+  let(:user) { User.create(user_attributes) }
+
+  before { valid_signin(user) }
 
   it "should delete the track" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = user.projects.create(project_attributes)
+    track = app.tracks.create(track_attributes(user: user))
 
     visit project_track_path(app, track)
 

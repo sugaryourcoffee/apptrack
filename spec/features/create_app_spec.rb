@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "Create Application" do
+  let(:user) { User.create(user_attributes) }
+
+  before { valid_signin(user) }
 
   it "should show new application form" do
     visit projects_path
@@ -21,6 +24,7 @@ describe "Create Application" do
     expect(current_path).to eq(project_path(Project.last))
     expect(page).to have_text "Application successfully created!"
     expect(page).to have_text "New application title"
+    expect(Project.last.user).to eq user
   end
 
   it "should not create an application without required attributes" do
