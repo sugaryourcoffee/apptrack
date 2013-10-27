@@ -164,28 +164,132 @@ describe "Authentication" do
         describe "delete project" do
           let(:project) { user.projects.create(project_attributes) }
 
-          describe "by project owner" do
-            before { visit project_path(project) }
+          it "should not have a 'Delete' link" do
+            visit project_path(project)
+            expect(page).not_to have_link('Delete')
+          end
 
-            it "should delete project after sign in" do
-              click_link "Delete"
-              fill_in_credentials(user)
-              expect(current_path).to eq user_path(user)
-              expect(page).not_to have_text(project.title)
+          describe "by project owner" do
+
+            it "should have a 'Delete' link after signin" do
+              valid_signin(user)
+              visit project_path(project)
+              expect(page).to have_link('Delete')
             end
 
           end
 
           describe "by user not owning the project" do
+          
+            it "should not have a 'Delete' link after signin" do
+              valid_signin(nonproprietor)
+              visit project_path(project)
+              expect(page).not_to have_link('Delete')
+            end
 
           end
         end
 
         describe "delete track" do
+          let(:project) { user.projects.create(project_attributes) }
+          let(:track)   { project.tracks.create(track_attributes(user: user)) }
+
+          it "should not have a 'Delete' link" do
+            visit project_track_path(project, track)
+            expect(page).not_to have_link('Delete')
+          end
+
+          describe "by track owner" do
+
+            it "should have a 'Delete' link after signin" do
+              valid_signin(user)
+              visit project_track_path(project, track)
+              expect(page).to have_link('Delete')
+            end
+
+          end
+
+          describe "by user not owning the track" do
+          
+            it "should not have a 'Delete' link after signin" do
+              valid_signin(nonproprietor)
+              visit project_track_path(project, track)
+              expect(page).not_to have_link('Delete')
+            end
+
+          end
         end
 
         describe "delete comment" do
+=begin
+          let(:project) { user.projects.create(project_attributes) }
+          let(:track)   { project.tracks.create(track_attributes) }
+          let(:comment) do
+            track.comments.create(comment_attributes(user: user))
+          end
+
+          it "should have a comment" do
+            expect(track.comments.size).to eq 1
+            visit project_track_path(project, track)
+            expect(page).to have_text comment.title
+          end
+
+          it "should not have a 'Delete Comment' link" do
+            visit project_track_path(project, track)
+            expect(page).not_to have_link('Delete Comment')
+          end
+
+          describe "by comment owner" do
+
+            it "should have a 'Delete Comment' link after signin" do
+              valid_signin(user)
+              visit project_track_path(project, track)
+              expect(page).to have_link('Delete Comment')
+            end
+
+          end
+
+          describe "by user not owning the comment" do
+          
+            it "should not have a 'Delete' link after signin" do
+              valid_signin(nonproprietor)
+              visit project_track_path(project, track)
+              expect(page).not_to have_link('Delete Comment')
+            end
+
+          end
+=end
         end
+      end
+    end
+
+    describe "as user not owning the object" do
+      let(:user) { User.create(user_attributes) }
+      let(:nonproprietor) do 
+        User.create(user_attributes(email: "non@proprietor.com"))
+      end
+      let(:project) { user.projects.create(project_attributes) }
+      let(:track)   { project.tracks.create(track_attributes(user: user)) }
+      let(:comment) { track.comments.create(comment_attributes(user: user)) }
+
+      before { sign_in(nonproprietor, no_capybara: true) }
+
+      describe "submitting a DELETE request to the Project#destroy action",
+               type: :request do
+        before { delete project_path(project) }
+        specify { expect(response).to redirect_to(root_path) }
+      end
+      
+      describe "submitting a DELETE request to the Track#destroy action",
+               type: :request do
+        before { delete project_track_path(project, track) }
+        specify { expect(response).to redirect_to(root_path) }
+      end
+      
+      describe "submitting a DELETE request to the Comment#destroy action",
+               type: :request do
+        before { delete track_comment_path(track, comment) }
+        specify { expect(response).to redirect_to(root_path) }
       end
     end
 
@@ -211,6 +315,7 @@ describe "Authentication" do
         before { patch user_path(wrong_user) }
         specify { expect(response).to redirect_to(root_path) }
       end
+
     end
   end
 end

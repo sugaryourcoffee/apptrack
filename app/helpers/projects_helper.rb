@@ -7,5 +7,5 @@ module ProjectsHelper
     content << "</ul></nav>"
     content.html_safe
   end
-       
+
 end

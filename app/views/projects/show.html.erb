@@ -4,13 +4,16 @@
   <header><h1><%= @project.title %></h1></header>
   <p><%= @project.description %></p>
   <p>
-    <%= link_to "Edit", edit_project_path(@project), class: "button" %> | 
-    <%= link_to "Delete", project_path(@project), 
-                method: :delete, 
-                data: { 
-                  confirm: 'Are you sure to delete the application?'
-                }
-    %>
+    <%= link_to "Edit", edit_project_path(@project), class: "button" %> 
+    <% if current_user?(@project.user) %>
+      |
+      <%= link_to "Delete", project_path(@project), 
+                  method: :delete, 
+                  data: { 
+                    confirm: 'Are you sure to delete the application?'
+                  }
+      %>
+    <% end %>
   </p>
 </article>
 
