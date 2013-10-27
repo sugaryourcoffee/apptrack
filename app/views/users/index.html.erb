@@ -1,0 +1,20 @@
+<%= provide(:title, "All users") %>
+
+<% currently_at "Members" %>
+
+<% @users.each do |user| %>
+  <article class="user">
+    <header>
+      <h1>
+        <%= gravatar_for user %>
+        <%= link_to user.name, user %>
+      </h1>
+    </header>
+    <p>Member since <%= time_ago_in_words user.created_at %></p>
+    <table>
+      <tr><th>Projects</th><td><%= user.projects.count %></td></tr>
+      <tr><th>Tracks</th><td><%= user.tracks.count %></td></tr>
+      <tr><th>Comments</th><td><%= user.comments.count %></td></tr>
+    </table>    
+  </article>
+<% end %>

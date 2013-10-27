@@ -40,6 +40,20 @@ describe "Authentication" do
           end
         end
 
+        describe "visit the user index page" do
+          
+          it "should redirect to sign in page" do
+            visit users_path
+            expect(current_path).to eq signin_path
+          end
+
+          it "should forward to user index page after signin" do
+            visit users_path
+            fill_in_credentials(user)
+            expect(current_path).to eq users_path
+          end
+        end
+
         describe "create project" do
           before do
             visit new_project_path
