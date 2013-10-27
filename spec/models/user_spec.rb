@@ -23,6 +23,20 @@ describe User do
     expect(user).to respond_to(:password_confirmation)
     expect(user).to respond_to(:authenticate)
     expect(user).to respond_to(:remember_token)
+    expect(user).to respond_to(:admin)
+  end
+
+  it "should not be admin as default user" do
+    user = User.new(user_attributes)
+
+    expect(user).not_to be_admin
+  end
+
+  it "should be admin with admin attribute set to true" do
+    user = User.new(user_attributes)
+    user.toggle!(:admin)
+
+    expect(user).to be_admin
   end
 
   it "requires a name" do

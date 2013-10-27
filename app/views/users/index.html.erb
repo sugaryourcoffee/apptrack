@@ -16,5 +16,11 @@
       <tr><th>Tracks</th><td><%= user.tracks.count %></td></tr>
       <tr><th>Comments</th><td><%= user.comments.count %></td></tr>
     </table>    
+    <% if current_user.admin? && !current_user?(user) %>
+      <p>
+        <%= link_to "Delete", user, method: :delete, class: "delete-button",
+                    data: { confirm: "Are you sure to delete the user?" } %>
+      </p>
+    <% end %>
   </article>
 <% end %>
