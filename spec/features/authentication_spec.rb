@@ -331,5 +331,28 @@ describe "Authentication" do
       end
 
     end
+
+    describe "as non-admin user" do
+      let(:user) { User.create(user_attributes) }
+      let(:other) { User.create(user_attributes(email: "other@example.com")) }
+
+      before { sign_in(other, no_capybara: true) }
+
+      describe "should not delete user as non-admin user", type: :request do
+        before { delete user_path(user) }
+        specify { expect(response).to redirect_to(root_path) }
+      end
+    end
+
+    describe "as admin user" do
+      let(:admin) { User.create(user_attributes(admin: true)) }
+
+      before { sign_in(admin, no_capybara: true) }
+
+      describe "should not delete own account", type: :request do
+        before { delete user_path(admin) }
+        specify { expect(response).to redirect_to(root_path) }
+      end
+    end
   end
 end
