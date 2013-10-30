@@ -12,11 +12,12 @@ module ApplicationHelper
   end
 
   def recent_project(project)
-    message = ""
+    user = project.user
+    message = "'#{link_to(user.name, user_path(user))}'"
     if project.updated_at == project.created_at
-      message = "created"
+      message << " created"
     else
-      message = "updated"
+      message << " updated"
     end
     message << " the project"+ 
                " '#{link_to(project.title, project_path(project))}'"+
@@ -25,12 +26,13 @@ module ApplicationHelper
   end
 
   def recent_track(track)
+    user = track.user
     project = track.project
-    message = ""
+    message = "'#{link_to(user.name, user_path(user))}'"
     if track.updated_at == track.created_at
-      message = "created"
+      message << " created"
     else
-      message = "updated"
+      message << " updated"
     end
     message << " the track"+
                " '#{link_to(track.title, 
@@ -42,13 +44,14 @@ module ApplicationHelper
   end
 
   def recent_comment(comment)
+    user = comment.user
     track = comment.track
     project = track.project
-    message = ""
+    message = "'#{link_to(user.name, user_path(user))}'"
     if comment.updated_at == comment.created_at
-      message = "commented '#{truncate(comment.title)}' on"
+      message << " commented '#{truncate(comment.title)}' on"
     else
-      message = "updated the comment '#{truncate(comment.title)}' on"
+      message << " updated the comment '#{truncate(comment.title)}' on"
     end
     message << " the track"+
                " '#{link_to(track.title, 
