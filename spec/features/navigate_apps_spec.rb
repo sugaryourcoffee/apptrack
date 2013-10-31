@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe "Navigating projects" do
+  let(:user) { User.create(user_attributes) }
 
   it "should navigate from the detail page to the index page" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
 
     visit project_url(app)
 
@@ -14,7 +15,7 @@ describe "Navigating projects" do
   end
 
   it "should navigate from the index page to the detail page" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
 
     visit projects_url
 
@@ -24,8 +25,9 @@ describe "Navigating projects" do
   end
 
   it "should navigate from the detail page to the track page" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes(title: "New Feature Track"))
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(title: "New Feature Track",
+                                               user: user))
 
     visit project_path(app)
 
@@ -35,8 +37,8 @@ describe "Navigating projects" do
   end
 
   it "should navigate from the track page to the detail page" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
 
     visit project_track_path(app, track)
 

@@ -6,7 +6,7 @@ describe "edit track" do
   before { valid_signin(user) }
 
   it "should show the edit page" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
     track = app.tracks.create(track_attributes(user: user))
 
     visit project_track_path(app, track)
@@ -17,7 +17,7 @@ describe "edit track" do
   end
 
   it "should update the track" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
     track = app.tracks.create(track_attributes(user: user))
 
     visit edit_project_track_path(app, track)
@@ -35,7 +35,7 @@ describe "edit track" do
   end
 
   it "should not update the track" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
     track = app.tracks.create(track_attributes(user: user))
 
     visit edit_project_track_path(app, track)

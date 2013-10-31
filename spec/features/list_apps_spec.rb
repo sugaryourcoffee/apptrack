@@ -1,17 +1,21 @@
 require 'spec_helper'
 
 describe "Viewing the list of projects" do
+  let(:user) { User.create(user_attributes) }
 
   it "shows the projects" do
     app1 = Project.create(title: "App 1",
-                              description: "Desc 1",
-                              active: true)
+                          description: "Desc 1",
+                          user: user,
+                          active: true)
     app2 = Project.create(title: "App 2",
-                              description: "Desc 2",
-                              active: true)
+                          description: "Desc 2",
+                          user: user,
+                          active: true)
     app3 = Project.create(title: "App 3",
-                              description: "Desc 3",
-                              active: false)
+                          description: "Desc 3",
+                          user: user,
+                          active: false)
 
     visit projects_url
 

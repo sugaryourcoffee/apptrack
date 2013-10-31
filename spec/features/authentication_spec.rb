@@ -79,8 +79,8 @@ describe "Authentication" do
         end
 
         describe "create comment" do
-          let(:project) { Project.create(project_attributes) }
-          let(:track)   { project.tracks.create(track_attributes) } 
+          let(:project) { Project.create(project_attributes(user: user)) }
+          let(:track)   { project.tracks.create(track_attributes(user: user)) } 
 
           before do
             visit new_track_comment_path(track)

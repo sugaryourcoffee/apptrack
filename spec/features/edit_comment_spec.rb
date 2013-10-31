@@ -6,8 +6,8 @@ describe "edit comment" do
   before { valid_signin user }
 
   it "should show the edit page" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
     comment = track.comments.create(comment_attributes(user: user))
 
     visit project_track_path(app, track)
@@ -18,8 +18,8 @@ describe "edit comment" do
   end
 
   it "should update the comment" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
     comment = track.comments.create(comment_attributes(user: user))
 
     visit edit_track_comment_path(track, comment)
@@ -37,8 +37,8 @@ describe "edit comment" do
   end
 
   it "should not update the comment" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
     comment = track.comments.create(comment_attributes(user: user))
 
     visit edit_track_comment_path(app, track)

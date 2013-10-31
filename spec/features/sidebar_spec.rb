@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'Sidebar' do
+  let(:user) { User.create(user_attributes) }
 
   it "should show recently added users" do
     user = User.create(user_attributes)
@@ -11,7 +12,7 @@ describe 'Sidebar' do
   end
 
   it "should show recently added and updated projects" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
 
     visit root_path
 
@@ -19,8 +20,8 @@ describe 'Sidebar' do
   end
 
   it "should show recently added and updated tracks" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
 
     visit root_path
 
@@ -28,9 +29,9 @@ describe 'Sidebar' do
   end
 
   it "should show recently added and updated comments" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
-    comment = track.comments.create(comment_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
+    comment = track.comments.create(comment_attributes(user: user))
 
     visit root_path
 

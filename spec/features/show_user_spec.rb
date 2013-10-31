@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "User show page" do
+  let(:user) { User.create(user_attributes) }
+  let(:other) { User.create(user_attributes(email: "other@example.com")) }
 
   it "should show user" do
     user = User.create(user_attributes)
@@ -27,7 +29,6 @@ describe "User show page" do
   end
 
   it "should show user's projects" do
-    user = User.create(user_attributes)
     project = user.projects.create(project_attributes)
 
     valid_signin user
@@ -49,8 +50,7 @@ describe "User show page" do
   end
 
   it "should show user's tracks" do
-    user = User.create(user_attributes)
-    project = Project.create(project_attributes)
+    project = Project.create(project_attributes(user: other))
     track = project.tracks.create(track_attributes(user: user))
 
     valid_signin user
@@ -72,9 +72,8 @@ describe "User show page" do
   end
 
   it "should show user's comments" do
-    user = User.create(user_attributes)
-    project = Project.create(project_attributes)
-    track = project.tracks.create(track_attributes)
+    project = Project.create(project_attributes(user: other))
+    track = project.tracks.create(track_attributes(user: other))
     comment = track.comments.create(comment_attributes(user: user))
 
     valid_signin user

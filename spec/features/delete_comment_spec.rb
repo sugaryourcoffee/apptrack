@@ -6,8 +6,8 @@ describe "delete the comment" do
   before { valid_signin user }
 
   it "should delete the comment" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
     comment = track.comments.create(comment_attributes(user: user))
 
     visit project_track_path(app, track)

@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe "Show track details" do
+  let(:user) { User.create(user_attributes) }
 
   it "should show the track" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
 
     visit project_track_path(app, track)
 
@@ -14,9 +15,9 @@ describe "Show track details" do
   end
 
   it "should show the comments" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
-    comment = track.comments.create(comment_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
+    comment = track.comments.create(comment_attributes(user: user))
 
     visit project_track_path(app, track)
 

@@ -6,8 +6,8 @@ describe "create comment" do
   before { valid_signin user }
 
   it "should show new comment form" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
 
     visit project_track_path(app, track)
 
@@ -17,8 +17,8 @@ describe "create comment" do
   end
 
   it "should create a new comment" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
 
     visit new_track_comment_path(track)
 
@@ -35,8 +35,8 @@ describe "create comment" do
   end
 
   it "should not create a new comment" do
-    app = Project.create(project_attributes)
-    track = app.tracks.create(track_attributes)
+    app = Project.create(project_attributes(user: user))
+    track = app.tracks.create(track_attributes(user: user))
 
     visit new_track_comment_path(track)
 

@@ -6,7 +6,7 @@ describe "create track" do
   before { valid_signin(user) }
 
   it "should show the new track form" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
 
     visit project_path(app)
 
@@ -16,7 +16,7 @@ describe "create track" do
   end
   
   it "should create a new track" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
 
     visit new_project_track_path(app)
 
@@ -33,7 +33,7 @@ describe "create track" do
   end
 
   it "should not create a new track" do
-    app = Project.create(project_attributes)
+    app = Project.create(project_attributes(user: user))
 
     visit new_project_track_path(app)
 
