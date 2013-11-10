@@ -1,4 +1,5 @@
 set :stage, :production
+set :rails_env, 'production'
 
 # Simple Role Syntax
 # ==================
@@ -7,7 +8,7 @@ set :stage, :production
 # unless any hosts have the primary property set.
 role :app, %w{localhost}
 role :web, %w{localhost}
-role :db,  %w{localhost}
+role :db,  %w{localhost}, primary: :true
 
 # Extended Server Syntax
 # ======================
@@ -15,7 +16,7 @@ role :db,  %w{localhost}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'localhost', user: 'vagrant', roles: %w{web app db}, primary: :true
+# server 'localhost', user: 'vagrant', roles: %w{web app db}, primary: :true
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
