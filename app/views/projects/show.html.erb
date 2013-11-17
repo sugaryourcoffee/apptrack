@@ -2,12 +2,20 @@
 
 <article class="project">
   <header><h1><%= @project.title %></h1></header>
+  <%= render 'urls' %>
   <p>
     <% if @project.user %>
       <%= gravatar_for(@project.user) %>
       <%= @project.user.name %>
     <% else %>
       No user assigned!
+    <% end %>
+  </p>
+  <p>
+    <% if @project.active %>
+      <strong><%= @project.title %></strong> is actively maintained
+    <% else %>
+      <strong><%= @project.title %></strong> is inactive
     <% end %>
   </p>
   <p><%= @project.description %></p>

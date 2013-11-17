@@ -12,6 +12,34 @@
         <%= f.label :description %>
         <%= f.text_area :description, cols: 40, rows: 7 %>
       </li>
+      <li>
+        <%= f.label :active %>
+        <%= f.check_box :active %>
+      </li>
+      <li>
+        <%= f.label :url_home, "Homepage" %>
+        <%= f.text_field :url_home %>
+      </li>
+      <li>
+        <%= f.label :url_repository, "Source Code" %>
+        <%= f.text_field :url_repository %>
+      </li>
+      <li>
+        <%= f.label :url_docs, "Docs" %>
+        <%= f.text_field :url_docs %>
+      </li>
+      <li>
+        <%= f.label :url_test, "Test Server" %>
+        <%= f.text_field :url_test %>
+      </li>
+      <li>
+        <%= f.label :url_staging, "Staging Server" %>
+        <%= f.text_field :url_staging %>
+      </li>
+      <li>
+        <%= f.label :url_production, "Production Server" %>
+        <%= f.text_field :url_production %>
+      </li>
       <p>
         <%= f.submit class: "button" %> | 
         <%= link_to "Cancel", :back %>

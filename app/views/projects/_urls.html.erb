@@ -1,0 +1,28 @@
+<nav id="applinks">
+  <ul>
+    <% unless @project.url_home.nil? or @project.url_home.empty? %> 
+      <li><%= link_to "Homepage", @project.url_home, 
+                      target: "_blank" %></li>
+    <% end %>
+    <% unless @project.url_repository.nil? or @project.url_repository.empty? %>
+      <li><%= link_to "Source Code", @project.url_repository, 
+                      target: "_blank" %></li>
+    <% end %>
+    <% unless @project.url_docs.nil? or @project.url_docs.empty? %>
+      <li><%= link_to "Docs", @project.url_docs, 
+                      target: "_blank"  %></li>
+    <% end %>
+    <% unless @project.url_test.nil? or @project.url_test.empty? %>
+      <li><%= link_to "Test Server", @project.url_test, 
+                      target: "_blank" %></li>
+    <% end %>
+    <% unless @project.url_staging.nil? or @project.url_staging.empty? %>
+      <li><%= link_to "Staging Server", @project.url_staging, 
+                      target: "_blank" %></li>
+    <% end %>
+    <% unless @project.url_production.nil? or @project.url_production.empty? %>
+      <li><%= link_to "Production Server", @project.url_production, 
+                      target: "_blank" %></li>
+    <% end %>
+  </ul>
+</nav>

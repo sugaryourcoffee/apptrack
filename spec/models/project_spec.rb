@@ -14,6 +14,22 @@ require 'spec_helper'
 
 describe "Project" do
   
+  it "should respond to attributes" do
+    app = Project.new
+
+    expect(app).to respond_to(:title)
+    expect(app).to respond_to(:description)
+    expect(app).to respond_to(:user)
+    expect(app).to respond_to(:tracks)
+    expect(app).to respond_to(:active)
+    expect(app).to respond_to(:url_home)
+    expect(app).to respond_to(:url_repository)
+    expect(app).to respond_to(:url_docs)
+    expect(app).to respond_to(:url_test)
+    expect(app).to respond_to(:url_staging)
+    expect(app).to respond_to(:url_production)
+  end
+  
   it "requires a title" do
     app = Project.new(title: " ")
 

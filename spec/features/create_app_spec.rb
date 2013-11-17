@@ -18,12 +18,25 @@ describe "Create Application" do
 
     fill_in "Title", with: "New application title"
     fill_in "Description", with: "New application description"
+    check   "Active"
+    fill_in "Homepage", with: "home.example.com"
+    fill_in "Source Code", with: "source.example.com"
+    fill_in "Docs", with: "docs.example.com"
+    fill_in "Test Server", with: "test.example.com"
+    fill_in "Staging Server", with: "staging.example.com"
+    fill_in "Production Server", with: "production.example.com" 
 
     click_button "Create Project"
 
     expect(current_path).to eq(project_path(Project.last))
     expect(page).to have_text "Application successfully created!"
     expect(page).to have_text "New application title"
+    expect(page).to have_link "Homepage"
+    expect(page).to have_link "Source Code"
+    expect(page).to have_link "Docs"
+    expect(page).to have_link "Test Server"
+    expect(page).to have_link "Staging Server"
+    expect(page).to have_link "Production Server"
     expect(Project.last.user).to eq user
   end
 

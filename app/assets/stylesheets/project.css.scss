@@ -34,6 +34,30 @@ article.project {
     font-size: 1.15em;
     line-height: 1.25em;
   }
+
+  nav#applinks {
+    font-size: 1.15em;
+
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      display: inline-block;
+
+      &:after {
+        content: " |";
+      }
+
+      &:last-child {
+        &:after {
+          content: "";
+        }
+      }
+    }
+  }
+
 }
 
 ul#projects {
@@ -178,3 +202,5 @@ ul#tracks {
     }
   }
 }
+
+

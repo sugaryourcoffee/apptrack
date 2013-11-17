@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027180228) do
+ActiveRecord::Schema.define(version: 20131116203548) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 20131027180228) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "url_home"
+    t.string   "url_repository"
+    t.string   "url_docs"
+    t.string   "url_test"
+    t.string   "url_staging"
+    t.string   "url_production"
   end
 
   create_table "tracks", force: true do |t|
