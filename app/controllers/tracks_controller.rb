@@ -49,7 +49,8 @@ class TracksController < ApplicationController
   private
 
     def track_params
-      params.require(:track).permit(:title, :description)
+      params.require(:track).permit(:title, :description, :version, 
+                                    :category, :status, :sequence)
     end
 
     def owner

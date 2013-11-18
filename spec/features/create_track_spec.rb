@@ -22,6 +22,9 @@ describe "create track" do
 
     fill_in "Title", with: "New track title"
     fill_in "Description", with: "New track description"
+    fill_in 'Sequence', with: 1
+    select  'Feature', from: 'Category'
+    select  'Open', from: 'Status'
 
     click_button "Create Track"
 

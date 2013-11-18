@@ -11,7 +11,12 @@
     <% end %>
   </p>
   <p><%= @track.description %></p>
-  <p><%= @track.version %></p>
+  <table>
+    <tr><th>Version</th><td><%= @track.version %></td></tr>
+    <tr><th>Category</th><td><%= @track.category %></td></tr>
+    <tr><th>Status</th><td><%= @track.status %></td></tr>
+    <tr><th>Sequence</th><td><%= @track.sequence %></td></tr>
+  </table>
   <p><%= link_to "Edit", edit_project_track_path(@project, @track),
                  class: "button" %>
      <% if current_user?(@track.user) %>

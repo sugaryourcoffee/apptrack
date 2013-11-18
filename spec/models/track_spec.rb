@@ -15,6 +15,21 @@ require 'spec_helper'
 
 describe "Track" do
 
+  it "should respond to attributes" do
+
+    track = Track.new
+
+    expect(track).to respond_to(:title)
+    expect(track).to respond_to(:description)
+    expect(track).to respond_to(:category)
+    expect(track).to respond_to(:status)
+    expect(track).to respond_to(:version)
+    expect(track).to respond_to(:sequence)
+    expect(track).to respond_to(:user)
+    expect(track).to respond_to(:comments)
+
+  end
+
   it "requires a title" do
     track = Track.new(title: " ")
 
