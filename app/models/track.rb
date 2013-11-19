@@ -18,7 +18,7 @@ class Track < ActiveRecord::Base
 
   CATEGORY_TYPES = ["Feature", "Issue"]
 
-  STATUS_TYPES = ["Open", "Done", "Postponed", "Rejected"]
+  STATUS_TYPES = ["Open", "Processing", "Done", "Postponed", "Rejected"]
 
   validates :title, :description, presence: true
   validates :category, inclusion: CATEGORY_TYPES
