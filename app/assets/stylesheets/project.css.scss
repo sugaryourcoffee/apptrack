@@ -135,11 +135,23 @@ ul#tracks {
     font-size: 1.1em;
 
     .list_line_even {
-      background: #f8f8ff;
+      background: #e8e8e8;
     }
 
     .list_line_odd {
       background: #edeae6;
+    }
+
+    .done {
+      a, a:link, a:visited {
+        color: #ffffff;
+      }
+      color: #ffffff;
+      background: #006302;
+    }
+
+    .processing {
+      font-style: italic;
     }
 
     th {
@@ -174,7 +186,11 @@ ul#tracks {
     tr.data {
       margin: 10px;
       &:hover {
-        background-color: #ffffff;
+        a, a:link, a:visited {
+          color: #ffffff;
+        }
+        color: #ffffff;
+        background-color: #4169e1;
         cursor: pointer;
       }
     }
