@@ -19,12 +19,12 @@
       <li>
         <%= f.label :category %>
         <%= f.select :category, Track::CATEGORY_TYPES, 
-                     prompt: 'Select a category' %>
+                     selected: 'Feature' %>
       </li>
       <li>
         <%= f.label :status %>
         <%= f.select :status, Track::STATUS_TYPES,
-                     prompt: 'Select a status' %>
+                     selected: 'Open' %>
       </li>
       <li>
         <%= f.label :sequence %>
