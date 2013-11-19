@@ -11,10 +11,8 @@ module ProjectsHelper
   def row_status_color(status)
     if status == "Done"
       "done"
-    elsif status == "Processing"
-      "processing"
     else
-      cycle('list_line_odd', 'list_line_even')
+      "processing #{cycle('list_line_odd', 'list_line_even')}"
     end
   end
 
