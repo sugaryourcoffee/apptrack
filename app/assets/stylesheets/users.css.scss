@@ -157,7 +157,7 @@ section.item {
 
   table {
     width: 100%;
-    line-height: 2.5em;
+    line-height: 1.4em;
     font-size: 1.1em;
     box-shadow: 0 0 8px #aaa;
 
@@ -188,11 +188,13 @@ section.item {
     }
 
     tbody {
+      vertical-align: top;
+
       td {
-        padding: 0 0 0 10px; 
+        padding: 5px 0 5px 10px; 
 
         &:last-child {
-          padding: 0 10px 0 10px;
+          padding: 5px 10px 5px 10px;
         }
       }
 
@@ -206,7 +208,7 @@ section.item {
       }
 
       th {
-        padding: 0 0 0 10px;
+        padding: 5px 0 5px 10px;
         text-align: left;
       }
     }
