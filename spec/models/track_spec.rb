@@ -44,4 +44,19 @@ describe "Track" do
     expect(track.errors[:description].any?).to be_true
   end
 
+  it "should delete sequence when not processing" do
+    track = Track.new(track_attributes(sequence: 1, status: "Done"))
+
+    track.save
+
+    expect(track.sequence).to be_nil
+  end
+
+  it "should not delete sequence when processing" do
+    track = Track.new(track_attributes(sequence: 1, status: "Processing"))
+
+    track.save
+
+    expect(track.sequence).to eq 1
+  end
 end

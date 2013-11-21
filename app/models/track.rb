@@ -16,7 +16,9 @@ class Track < ActiveRecord::Base
   belongs_to :user
   has_many   :comments, dependent: :destroy
 
-  default_scope { order('sequence DESC') }
+  before_save :clear_sequence
+
+  default_scope { order('status DESC').order('sequence DESC') }
 
   CATEGORY_TYPES = ["Feature", "Issue"]
 
@@ -34,4 +36,10 @@ class Track < ActiveRecord::Base
   def project
     Project.find(project_id)
   end
+
+  private
+
+    def clear_sequence
+      self.sequence = nil unless self.status == "Processing"
+    end
 end
