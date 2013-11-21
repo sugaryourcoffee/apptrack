@@ -16,6 +16,8 @@ class Track < ActiveRecord::Base
   belongs_to :user
   has_many   :comments, dependent: :destroy
 
+  default_scope { order('sequence DESC') }
+
   CATEGORY_TYPES = ["Feature", "Issue"]
 
   STATUS_TYPES = ["Open", "Processing", "Done", "Postponed", "Rejected"]
