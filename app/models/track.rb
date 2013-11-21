@@ -18,7 +18,7 @@ class Track < ActiveRecord::Base
 
   before_save :clear_sequence
 
-  default_scope { order('status DESC').order('sequence DESC') }
+  default_scope { order('status DESC').order('sequence ASC') }
 
   CATEGORY_TYPES = ["Feature", "Issue"]
 
@@ -40,6 +40,6 @@ class Track < ActiveRecord::Base
   private
 
     def clear_sequence
-      self.sequence = nil unless self.status == "Processing"
+      self.sequence = nil unless ["Processing", "Open"].include? self.status
     end
 end

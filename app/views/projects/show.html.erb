@@ -46,7 +46,7 @@
       <% @project.tracks.each do |track| %>
         <tr data-link="<%= project_track_path(@project, track) %>"
           class="<%= row_status_color(track.status) %> data"
-          title="<%= track.status %> <%= track.category %>">
+          title="<%= "#{track.sequence}-#{track.status}-#{track.category}" %>">
           <td 
             class="first"><%= link_to track.title,
                                       project_track_path(@project, track) %>
