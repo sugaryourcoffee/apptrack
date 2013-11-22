@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118185645) do
+ActiveRecord::Schema.define(version: 20131122213523) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(version: 20131118185645) do
     t.string   "url_test"
     t.string   "url_staging"
     t.string   "url_production"
+  end
+
+  create_table "projects_users", force: true do |t|
+    t.integer "project_id"
+    t.integer "user_id"
   end
 
   create_table "tracks", force: true do |t|

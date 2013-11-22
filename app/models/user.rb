@@ -2,11 +2,14 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -14,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :tracks
   has_many :comments
+
+  has_and_belongs_to_many :contributions, class_name: 'Project'
 
   has_secure_password
   validates :password, length: { minimum: 6 }

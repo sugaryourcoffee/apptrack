@@ -9,6 +9,10 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  project_id  :integer
+#  user_id     :integer
+#  category    :string(255)
+#  sequence    :integer
+#  status      :string(255)
 #
 
 class Track < ActiveRecord::Base

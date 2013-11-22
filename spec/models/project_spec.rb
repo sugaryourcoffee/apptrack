@@ -2,12 +2,19 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  description :string(255)
-#  active      :boolean
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  description    :string(255)
+#  active         :boolean
+#  created_at     :datetime
+#  updated_at     :datetime
+#  user_id        :integer
+#  url_home       :string(255)
+#  url_repository :string(255)
+#  url_docs       :string(255)
+#  url_test       :string(255)
+#  url_staging    :string(255)
+#  url_production :string(255)
 #
 
 require 'spec_helper'
