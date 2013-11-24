@@ -7,14 +7,7 @@
         <header data-link="<%= project_path(project) %>">
           <h2><%= link_to project.title, project_path(project) %></h2>
         </header>
-        <p>
-          <% if project.user %>
-            <%= gravatar_for(project.user) %>
-            <%= project.user.name %>
-          <% else %>
-            No user assigned!
-          <% end %>
-        </p>
+        <%= render('user_and_contributors', project: project) %>
         <p>
           <%= truncate(project.description, length: 80, separator: ' ') %> 
         </p>

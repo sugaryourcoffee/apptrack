@@ -1,0 +1,10 @@
+<p>
+  <%= gravatar_for(project.user, "Project owner") %>
+  <%= project.user.name %>
+  <% unless project.contributors.empty? %>
+    <% project.contributors.each do |c| %>
+      <%= gravatar_for(c, "Project contributor") %>
+      <%= c.name %>
+    <% end %>
+  <% end %>
+</p>
