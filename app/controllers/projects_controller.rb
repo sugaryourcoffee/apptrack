@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.contributors = User.find(params[:project][:contributors].reject(&:empty?))
     @project.user = current_user
     if @project.save
       redirect_to @project, notice: "Application successfully created!"
@@ -29,6 +30,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project.contributors = User.find(params[:project][:contributors].reject(&:empty?))
+
     if @project.update(project_params)
       redirect_to projects_path, notice: "Application successfully updated!"
     else

@@ -35,6 +35,7 @@ describe "Project" do
     expect(app).to respond_to(:url_test)
     expect(app).to respond_to(:url_staging)
     expect(app).to respond_to(:url_production)
+    expect(app).to respond_to(:contributors)
   end
   
   it "requires a title" do

@@ -27,6 +27,7 @@ describe User do
     expect(user).to respond_to(:authenticate)
     expect(user).to respond_to(:remember_token)
     expect(user).to respond_to(:admin)
+    expect(user).to respond_to(:contributions)
   end
 
   it "should not be admin as default user" do

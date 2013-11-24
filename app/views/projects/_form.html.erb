@@ -5,6 +5,10 @@
   <fieldset>
     <ol>
       <li>
+        <%= f.label :contributors %>
+        <%= f.select(:contributors, options_from_collection_for_select(User.all, 'id', 'email'), { include_blank: true }, { multiple: true }) %>
+      </li>
+      <li>
         <%= f.label :title %>
         <%= f.text_field :title, autofocus: true %>
       </li>
