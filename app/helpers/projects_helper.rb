@@ -18,4 +18,7 @@ module ProjectsHelper
     end
   end
 
+  def selected_values(contributors)
+    contributors.collect! {|c| c.id }
+  end
 end

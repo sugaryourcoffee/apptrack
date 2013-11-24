@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     order('updated_at desc').limit(count)
   end
 
+  def self.find_all_except_for(user)
+    self.where("id != :id", id: user.id)
+  end
+
   private
 
     def create_remember_token
