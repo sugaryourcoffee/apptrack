@@ -41,6 +41,8 @@ describe "Create Application" do
     expect(page).to have_link "Test Server"
     expect(page).to have_link "Staging Server"
     expect(page).to have_link "Production Server"
+    expect(page).to have_text "Jane"
+    expect(page).to have_text "John"
     expect(Project.last.user).to eq user
     expect(Project.last.contributors.size).to eq 2
   end
