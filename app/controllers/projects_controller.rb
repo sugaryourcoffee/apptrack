@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @tracks = @project.tracks
   end
 
   def new
