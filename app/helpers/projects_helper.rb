@@ -21,4 +21,16 @@ module ProjectsHelper
   def selected_values(contributors)
     contributors.collect! {|c| c.id }
   end
+
+  def sequence_numbers(tracks)
+    (tracks.collect { |t| t.sequence }).compact.uniq
+  end
+
+  def status_types(tracks)
+    (tracks.collect { |t| t.status }).compact.uniq
+  end
+
+  def category_types(tracks)
+    (tracks.collect { |t| t.category }).compact.uniq
+  end
 end

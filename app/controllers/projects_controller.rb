@@ -9,7 +9,11 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @tracks = @project.tracks
+    @tracks = Track.filter(params)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new

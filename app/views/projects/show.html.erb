@@ -36,39 +36,13 @@
 
 <h2><%= pluralize(@tracks.size, "Track") %></h2>
 
-<%= form_tag project_path, method: 'get' do %>
-  <%= label_tag :sequence %>
-  <%= select_tag :sequence, options_for_select([1..10], params[:sequence]), include_blank: true %>
-  <%= label_tag :status %>
-  <%= select_tag :status, options_for_select(Track::STATUS_TYPES, params[:status]), include_blank: true %>
-  <%= label_tag :category %>
-  <%= select_tag :category, options_for_select(Track::CATEGORY_TYPES, params[:category]), include_blank: true %>
-  <%= submit_tag 'Filter', name: nil %>
-<% end %>
+<section id="filter">
+  <%= render "filter" %>
+</section>
 
-<ul id="tracks">
-  <table> 
-    <thead>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Comments</th>
-    </thead>
-    <tbody>
-      <% @tracks.each do |track| %>
-        <tr data-link="<%= project_track_path(@project, track) %>"
-          class="<%= row_status_color(track.status) %> data"
-          title="<%= "#{track.sequence}-#{track.status}-#{track.category}" %>">
-          <td 
-            class="first"><%= link_to track.title,
-                                      project_track_path(@project, track) %>
-          </td>
-          <td class="middle"><%= track.description %></td>
-          <td class="last"><%= track.comments.count %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</ul>
+<section id="tracks">
+  <%= render "tracks" %>
+</section>
 
 <% content_for :secondary_nav do %>
   <%= breadcrumbs [link_to('Projects', projects_path),

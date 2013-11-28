@@ -1,0 +1,24 @@
+<%= form_tag project_path, method: 'get', remote: true do %>
+  <li>
+    <%= label_tag :search_sequence, 'Sequence' %>
+    <%= select_tag :search_sequence, 
+      options_for_select(sequence_numbers(@project.tracks), 
+                         params[:search_sequence]), include_blank: true %>
+  </li>
+  <li>
+    <%= label_tag :search_status, 'Status' %>
+    <%= select_tag :search_status, 
+      options_for_select(status_types(@project.tracks), 
+                         params[:search_status]), include_blank: true %>
+  </li>
+  <li>
+    <%= label_tag :search_category, 'Category' %>
+    <%= select_tag :search_category, 
+      options_for_select(category_types(@project.tracks), 
+                         params[:search_category]), include_blank: true %>
+  </li>
+  <li>
+    <%= submit_tag 'Filter', name: nil, class: "button" %>
+  </li>
+<% end %>
+

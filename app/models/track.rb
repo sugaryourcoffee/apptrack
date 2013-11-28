@@ -37,6 +37,23 @@ class Track < ActiveRecord::Base
     order('updated_at desc').limit(count)
   end
 
+  def self.filter(params)
+    search_params = params.select { |k,v| not v.empty? and k =~ /^search_/ }
+    query_string = "project_id = ?"
+    values = [params[:id]]
+    unless search_params.empty?
+      search_params.each do |k,v|
+        query_string << " and "
+
+        key = k.sub("search_", "")
+
+        query_string << "#{key} = ?"
+        values << v
+      end
+    end
+    self.where(query_string, *values)
+  end
+
   def project
     Project.find(project_id)
   end

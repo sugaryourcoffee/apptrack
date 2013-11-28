@@ -220,4 +220,18 @@ ul#tracks {
   }
 }
 
+#filter {
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: #f0f0f0;
 
+  li {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 10px 6px;
+  }
+}
