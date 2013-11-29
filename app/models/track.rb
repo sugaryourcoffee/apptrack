@@ -33,6 +33,8 @@ class Track < ActiveRecord::Base
   validates :status, inclusion: STATUS_TYPES
   validates :sequence, numericality: { greater_than: 0 }, allow_blank: true
 
+  after_create :notify_created
+
   def self.recent(count)
     order('updated_at desc').limit(count)
   end
@@ -54,13 +56,19 @@ class Track < ActiveRecord::Base
     self.where(query_string, *values)
   end
 
+=begin
   def project
     Project.find(project_id)
   end
+=end
 
   private
 
     def clear_sequence
       self.sequence = nil unless ["Processing", "Open"].include? self.status
+    end
+
+    def notify_created
+      Notifier.track_added(self).deliver
     end
 end

@@ -19,6 +19,9 @@ require 'spec_helper'
 
 describe "Track" do
 
+  let(:user) { User.create!(user_attributes) }
+  let(:project) { Project.create!(project_attributes(user: user)) }
+
   it "should respond to attributes" do
 
     track = Track.new
@@ -49,17 +52,17 @@ describe "Track" do
   end
 
   it "should delete sequence when not processing" do
-    track = Track.new(track_attributes(sequence: 1, status: "Done"))
-
-    track.save
+    track = project.tracks.create!(track_attributes(sequence: 1, 
+                                                status: "Done",
+                                                user: user))
 
     expect(track.sequence).to be_nil
   end
 
   it "should not delete sequence when processing" do
-    track = Track.new(track_attributes(sequence: 1, status: "Processing"))
-
-    track.save
+    track = project.tracks.create!(track_attributes(sequence: 1, 
+                                                   status: "Processing",
+                                                   user: user))
 
     expect(track.sequence).to eq 1
   end
