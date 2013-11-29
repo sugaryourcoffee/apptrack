@@ -25,8 +25,15 @@ class Project < ActiveRecord::Base
 
   validates :title, :description, presence: :true
 
+  after_create :notify_created
+
   def self.recent(count)
     order('updated_at desc').limit(count)
   end
 
+  private
+    
+    def notify_created
+      Notifier.project_added(self).deliver
+    end
 end
