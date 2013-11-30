@@ -26,7 +26,7 @@ A new track has been added to project #{project.title} in apptrack\r
 Title: #{track.title}\r
 Owner: #{user.name}\r
 \r
-You can view the new track at #{track_url track}\r
+You can view the new track at #{project_track_url project, track}\r
 \r
 Thank you for using apptrack\r
 Application Tracking made Easy\r
@@ -38,7 +38,7 @@ A new comment has been added to the track #{track.title} in the project #{projec
 Title: #{comment.title}\r
 Owner: #{user.name}\r
 \r
-You can view the new comment at #{track_url track}\r
+You can view the new comment at #{project_track_url project, track}\r
 \r
 Thank you for using apptrack\r
 Application Tracking made Easy\r

@@ -3,7 +3,7 @@ A new comment has been added to the track <%= @track.title %> in the project <%=
 Title: <%= @comment.title %>
 Owner: <%= @user.name %>
 
-You can view the new comment at <%= track_url @track %>
+You can view the new comment at <%= project_track_url @project, @track %>
 
 Thank you for using apptrack
 Application Tracking made Easy
