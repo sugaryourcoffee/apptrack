@@ -20,6 +20,18 @@ Thank you for using apptrack\r
 Application Tracking made Easy\r
     PROJECT_MAIL
 
+    @project_update_body = <<-PROJECT_UPDATE_MAIL
+Project has been updated in apptrack\r
+\r
+Title:  #{project.title}\r
+Owner:  #{user.name}\r
+\r
+You can view the new project at #{project_url project}\r
+\r
+Thank you for using apptrack\r
+Application Tracking made Easy\r
+    PROJECT_UPDATE_MAIL
+
     @track_body = <<-TRACK_MAIL
 A new track has been added to project #{project.title} in apptrack\r
 \r
@@ -31,6 +43,19 @@ You can view the new track at #{project_track_url project, track}\r
 Thank you for using apptrack\r
 Application Tracking made Easy\r
     TRACK_MAIL
+    
+    @track_update_body = <<-TRACK_UPDATE_MAIL
+Track has been updated in project #{project.title} in apptrack\r
+\r
+Title:  #{track.title}\r
+Owner:  #{user.name}\r
+Status: #{track.status}\r
+\r
+You can view the new track at #{project_track_url project, track}\r
+\r
+Thank you for using apptrack\r
+Application Tracking made Easy\r
+    TRACK_UPDATE_MAIL
 
     @comment_body = <<-COMMENT_MAIL
 A new comment has been added to the track #{track.title} in the project #{project.title} in apptrack\r
@@ -43,6 +68,18 @@ You can view the new comment at #{project_track_url project, track}\r
 Thank you for using apptrack\r
 Application Tracking made Easy\r
     COMMENT_MAIL
+
+    @comment_update_body = <<-COMMENT_UPDATE_MAIL
+Comment has been updated in the track #{track.title} in the project #{project.title} in apptrack\r
+\r
+Title: #{comment.title}\r
+Owner: #{user.name}\r
+\r
+You can view the new comment at #{project_track_url project, track}\r
+\r
+Thank you for using apptrack\r
+Application Tracking made Easy\r
+    COMMENT_UPDATE_MAIL
 
     @user_body = <<-USER_MAIL
 A new user has register for apptrack\r
@@ -72,12 +109,27 @@ Application Tracking made Easy\r
     end
   end
 
+  describe "project_updated" do
+    let(:mail) { Notifier.project_updated(project) }
+
+    it "renders the headers" do
+      mail.subject.should eq("[apptrack] Updated Project #{project.title}")
+      mail.to.should eq(["pierre@sugaryourcoffee.de"])
+      mail.from.should eq(["pierre@sugaryourcoffee.de"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should match(@project_update_body)
+    end
+  end
+
   describe "track_added" do
     let(:mail) { Notifier.track_added(track) }
 
     it "renders the headers" do
       mail.subject.should eq("[apptrack] New Track in Project #{project.title}")
-      mail.to.should eq(["pierre@sugaryourcoffee.de"])
+      mail.to.should eq([project.user.email])
+      mail.bcc.should eq(["pierre@sugaryourcoffee.de"])
       mail.from.should eq(["pierre@sugaryourcoffee.de"])
     end
 
@@ -86,17 +138,48 @@ Application Tracking made Easy\r
     end
   end
 
+  describe "track_updated" do
+    let(:mail) { Notifier.track_updated(track) }
+
+    it "renders the headers" do
+      mail.subject.should eq("[apptrack] Track updated in Project #{project.title}")
+      mail.to.should eq([project.user.email])
+      mail.bcc.should eq(["pierre@sugaryourcoffee.de"])
+      mail.from.should eq(["pierre@sugaryourcoffee.de"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should match(@track_update_body)
+    end
+  end
+
   describe "comment_added" do
     let(:mail) { Notifier.comment_added(comment) }
 
     it "renders the headers" do
       mail.subject.should eq("[apptrack] New Comment in Project #{project.title}")
-      mail.to.should eq(["pierre@sugaryourcoffee.de"])
+      mail.to.should eq([track.user.email])
+      mail.bcc.should eq(["pierre@sugaryourcoffee.de", project.user.email])
       mail.from.should eq(["pierre@sugaryourcoffee.de"])
     end
 
     it "renders the body" do
       mail.body.encoded.should match(@comment_body)
+    end
+  end
+
+  describe "comment_updated" do
+    let(:mail) { Notifier.comment_updated(comment) }
+
+    it "renders the headers" do
+      mail.subject.should eq("[apptrack] Comment updated in Project #{project.title}")
+      mail.to.should eq([track.user.email])
+      mail.bcc.should eq(["pierre@sugaryourcoffee.de", project.user.email])
+      mail.from.should eq(["pierre@sugaryourcoffee.de"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should match(@comment_update_body)
     end
   end
 

@@ -14,6 +14,14 @@ class Notifier < ActionMailer::Base
          subject: "[apptrack] New Project #{@project.title}"
   end
 
+  def project_updated(project)
+    @project = project
+    @user   = project.user
+
+    mail to: "pierre@sugaryourcoffee.de",
+         subject: "[apptrack] Updated Project #{@project.title}"
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -24,8 +32,19 @@ class Notifier < ActionMailer::Base
     @track   = track
     @user    = @track.user
 
-    mail to: "pierre@sugaryourcoffee.de",
+    mail to: @user.email,
+         bcc: "pierre@sugaryourcoffee.de",
          subject: "[apptrack] New Track in Project #{@project.title}"
+  end
+
+  def track_updated(track)
+    @project = track.project
+    @track   = track
+    @user    = @track.user
+
+    mail to: @user.email,
+         bcc: "pierre@sugaryourcoffee.de",
+         subject: "[apptrack] Track updated in Project #{@project.title}"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -39,8 +58,20 @@ class Notifier < ActionMailer::Base
     @track   = @comment.track
     @project = @track.project
 
-    mail to: "pierre@sugaryourcoffee.de",
+    mail to: @user.email,
+         bcc: "pierre@sugaryourcoffee.de, #{@project.user.email}",
          subject: "[apptrack] New Comment in Project #{@project.title}"
+  end
+
+  def comment_updated(comment)
+    @comment = comment
+    @user    = @comment.user
+    @track   = @comment.track
+    @project = @track.project
+
+    mail to: @user.email,
+         bcc: "pierre@sugaryourcoffee.de, #{@project.user.email}",
+         subject: "[apptrack] Comment updated in Project #{@project.title}"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
