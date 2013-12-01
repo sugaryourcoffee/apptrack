@@ -34,6 +34,7 @@ class Track < ActiveRecord::Base
   validates :sequence, numericality: { greater_than: 0 }, allow_blank: true
 
   after_create :notify_created
+  after_update :notify_updated
 
   def self.recent(count)
     order('updated_at desc').limit(count)
@@ -70,5 +71,9 @@ class Track < ActiveRecord::Base
 
     def notify_created
       Notifier.track_added(self).deliver
+    end
+
+    def notify_updated
+      Notifier.track_updated(self).deliver
     end
 end

@@ -18,6 +18,7 @@ class Comment < ActiveRecord::Base
   validates :title, :comment, presence: true
 
   after_create :notify_created
+  after_update :notify_updated
 
   def self.recent(count)
     order('updated_at desc').limit(3)
@@ -31,5 +32,9 @@ class Comment < ActiveRecord::Base
 
     def notify_created
       Notifier.comment_added(self).deliver
+    end
+
+    def notify_updated
+      Notifier.comment_updated(self).deliver
     end
 end
