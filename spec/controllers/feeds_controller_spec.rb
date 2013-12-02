@@ -13,8 +13,11 @@ describe FeedsController do
       get :projects, format: :atom
       expect(response.status).to eq(200)
       expect(response).to render_template("projects")
-      expect(response).to have_text project.title
     end
+
+    it "should show new feeds for created tracks"
+
+    it "should show new feeds for created comments"
 
   end
 
@@ -27,7 +30,14 @@ describe FeedsController do
     end
 
     it "should show feeds for updated objects" do
+      get :projects, format: :atom
+      expect(response.status).to eq(200)
+      expect(response).to render_template("projects")
     end
+
+    it "should show feeds for updated tracks"
+
+    it "should show feeds for updated comments"
 
   end
 
