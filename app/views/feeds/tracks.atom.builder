@@ -2,7 +2,8 @@ atom_feed do |feed|
   feed.title "Latest Track Updates"
 
   @tracks.each do |track|
-    feed.entry(track) do |entry|
+    project = track.project
+    feed.entry(track, url: project_track_url(project, track)) do |entry|
       entry.title track.title
       entry.summary type: 'xhtml' do |xhtml|
         xhtml.p track.description
@@ -13,7 +14,7 @@ atom_feed do |feed|
           end
           xhtml.tr do
             xhtml.th 'Project'
-            xhtml.td link_to track.project.title, project_url track.project
+            xhtml.td project.title
           end
           xhtml.tr do
             xhtml.th 'Status'

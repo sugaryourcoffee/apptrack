@@ -4,7 +4,7 @@ atom_feed do |feed|
   @comments.each do |comment|
     track = comment.track
     project = track.project
-    feed.entry(comment) do |entry|
+    feed.entry(comment, url: project_track_url(project, track)) do |entry|
       entry.title comment.title
       entry.summary type: 'xhtml' do |xhtml|
         xhtml.p comment.comment
@@ -15,11 +15,11 @@ atom_feed do |feed|
           end
           xhtml.tr do
             xhtml.th 'Project'
-            xhtml.td link_to project.title project_url project
+            xhtml.td project.title
           end
           xhtml.tr do
             xhtml.th 'Track'
-            xhtml.td link_to track.title project_track_url track
+            xhtml.td track.title
           end
         end
       end
