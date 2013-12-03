@@ -10,6 +10,8 @@ Apptrack::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   match 'feeds/projects(.:format)', to: 'feeds#projects', via: 'get'
+  match 'feeds/tracks(.:format)',   to: 'feeds#tracks',   via: 'get'
+  match 'feeds/comments(.:format)', to: 'feeds#comments', via: 'get'
 
   resources :projects do
     resources :tracks
