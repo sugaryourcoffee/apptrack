@@ -34,6 +34,20 @@ class User < ActiveRecord::Base
                     format: {with: EMAIL_PATTERN}, 
                     uniqueness: {case_sensitive: false}
 
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    self.password = self.password_confirmation = :password_reset_token
+    save!
+    Notifier.password_reset(self).deliver
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

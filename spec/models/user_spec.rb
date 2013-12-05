@@ -28,6 +28,8 @@ describe User do
     expect(user).to respond_to(:remember_token)
     expect(user).to respond_to(:admin)
     expect(user).to respond_to(:contributions)
+    expect(user).to respond_to(:password_reset_token)
+    expect(user).to respond_to(:password_reset_sent_at)
   end
 
   it "should not be admin as default user" do
@@ -147,5 +149,26 @@ describe User do
 
     expect(another_user.save).to be_false
     expect(another_user.errors[:email].any?).to be_true
+  end
+
+  describe "#send_password_reset" do
+    let(:user) { User.create(user_attributes) }
+
+    it "generates a unique password_reset_token each time" do
+      user.send_password_reset
+      last_token = user.password_reset_token
+      user.send_password_reset
+      expect(user.password_reset_token).not_to eq last_token
+    end
+
+    it "saves the time the password reset was sent" do
+      user.send_password_reset
+      expect(user.reload.password_reset_sent_at).to be_present
+    end
+
+    it "delivers email to user" do
+      user.send_password_reset
+      expect(last_email.to).to include user.email
+    end
   end
 end

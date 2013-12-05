@@ -1,0 +1,21 @@
+<%= provide(:title, 'Reset Password') %>
+
+<h1>Reset Password</h1>
+
+<fieldset>
+  <%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
+    <ol>
+      <li>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </li>
+      <li>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </li>
+      <li>
+        <%= f.submit 'Update Password', class: 'ok-button' %>
+      </li>
+    </ol>
+  <% end %>
+</fieldset>

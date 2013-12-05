@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Notifier do
 
-  let(:user) { User.create(user_attributes) }
+  let(:user) { User.create(user_attributes(password_reset_token: 'token')) }
   let(:project) { Project.create(project_attributes(user: user)) }
   let(:track) { project.tracks.create(track_attributes(user: user)) }
   let(:comment) { track.comments.create(comment_attributes(user: user)) }
@@ -194,6 +194,21 @@ Application Tracking made Easy\r
 
     it "renders the body" do
       mail.body.encoded.should match(@user_body)
+    end
+  end
+
+  describe "password reset sent" do
+    let(:mail) { Notifier.password_reset(user) }
+
+    it "renders the headers" do
+      mail.subject.should eq("[apptrack] Password reset request")
+      mail.to.should eq([user.email])
+      mail.from.should eq(["pierre@sugaryourcoffee.de"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.
+        should match(edit_password_reset_path(user.password_reset_token))
     end
   end
 end

@@ -1,0 +1,15 @@
+<h1>Reset Password</h1>
+
+<%= form_tag password_resets_path, method: :post do %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag :email, "Enter your email" %>
+        <%= text_field_tag :email, params[:email] %>
+      </li>
+      <li>
+        <%= submit_tag "Send", class: "ok-button" %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

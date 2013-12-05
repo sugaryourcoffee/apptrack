@@ -85,4 +85,11 @@ class Notifier < ActionMailer::Base
     mail to: "pierre@sugaryourcoffee.de",
          subject: "[apptrack] New User has registered for apptrack"
   end
+
+  def password_reset(user)
+    @user = user
+    mail to: user.email,
+         subject: "[apptrack] Password reset request"
+  end
+
 end
