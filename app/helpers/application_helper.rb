@@ -78,6 +78,7 @@ module ApplicationHelper
       fenced_code_blocks: true,
       superscript:        true,
       highlight:          true,
+      underline:          true,
       quote:              true
     }
 
