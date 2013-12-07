@@ -12,6 +12,7 @@
         <%= f.label :description %>
         <%= f.text_area :description, cols: 40, rows: 7 %>
       </li>
+      <%= render 'shared/markdown_instructions' %>
       <li>
         <%= f.label :version %>
         <%= f.text_field :version %>

@@ -19,7 +19,7 @@
       <strong><%= @project.title %></strong> is inactive
     <% end %>
   </p>
-  <p><%= @project.description %></p>
+  <section class="user_input"><%= markdown @project.description %></section>
   <p>
     <%= link_to "Edit", edit_project_path(@project), class: "button" %> 
     <% if current_user?(@project.user) %>

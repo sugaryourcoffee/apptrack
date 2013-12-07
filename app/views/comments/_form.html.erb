@@ -12,6 +12,7 @@
         <%= f.label :comment %>
         <%= f.text_area :comment, cols: 40, rows: 7 %>
       </li>
+      <%= render 'shared/markdown_instructions' %>
       <p>
         <%= f.submit class: "button" %> |
         <%= link_to "Cancel", :back %>

@@ -14,7 +14,9 @@
             class="first"><%= link_to track.title,
                                       project_track_path(@project, track) %>
           </td>
-          <td class="middle"><%= track.description %></td>
+          <td class="middle">
+            <%= truncate(track.description, length: 180) %>
+          </td>
           <td class="last"><%= track.comments.count %></td>
         </tr>
       <% end %>

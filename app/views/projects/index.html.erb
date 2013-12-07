@@ -9,7 +9,7 @@
         </header>
         <%= render('user_and_contributors', project: project) %>
         <p>
-          <%= truncate(project.description, length: 80, separator: ' ') %> 
+          <%= truncate(project.description, length: 180, separator: ' ') %> 
         </p>
         <p>
           <%= pluralize(project.tracks.size, "track") %>
