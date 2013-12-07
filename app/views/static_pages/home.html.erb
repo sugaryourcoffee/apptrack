@@ -1,0 +1,63 @@
+<%= provide(:title, 'Home') %>
+
+<%= currently_at 'Home' %>
+
+<section>
+  <header>
+    <h1>Welcome to apptrack</h1>
+  </header>
+
+  <article>
+    <p>
+      <strong>apptrack</strong> provides a platform to to support colaborative
+      application development. 
+    </p>
+    <p> 
+      You can create a project and invite contributors to the project. Users as
+      well as the project owner, the one who created the project, and the 
+      contributors can created tracks, that is features or issues, that also 
+      can be commented.
+    </p>
+    <p>
+      Using <strong>apptrack</strong> is free. To create projects, tracks or
+      comments you have to be signed in. 
+      <% unless current_user %>
+        If you don't have an account yet
+        just <%= link_to 'sign up', signup_path %> now.
+      <% end %>
+    </p>
+  </article>
+</section>
+
+<section>
+  <header>
+    <h2>Statistics</h2>
+  </header>
+  <p>
+    <strong>apptrack</strong> is hosting x projects with y tracks.
+    We have currently z users in apptrack.
+  </p>
+  <h3>Our top 10 projects</h3>
+  <table>
+    <thead>
+      <tr><th>Rank</th><th>Project</th><th>Tracks</th><th>Comments</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>some project</td><td>100</td><td>50</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<% unless current_user %>
+  <section>
+    <p>
+      No user yet?
+      <%= link_to 'Sign up now!', signup_path %>
+    </p>
+
+    <p>
+      Already have an account?
+      <%= link_to 'Sign in now!', signin_path %>
+    </p>
+  </section>
+<% end %>
