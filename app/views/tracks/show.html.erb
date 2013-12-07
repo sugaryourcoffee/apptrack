@@ -10,7 +10,8 @@
       No user assigned!
     <% end %>
   </p>
-  <p><%= @track.description %></p>
+  <section class="user_input"><%= markdown @track.description %></section>
+  <br/>
   <table>
     <tr><th>Version</th><td><%= @track.version %></td></tr>
     <tr><th>Category</th><td><%= @track.category %></td></tr>
@@ -42,7 +43,7 @@
           No user assigned!
         <% end %>
       </p>
-      <p><%= comment.comment %></p>
+      <section class="user_input"><%= markdown comment.comment %></section>
       <p><%= link_to "Edit Comment",
                      edit_track_comment_path(@track, comment), 
                      class: "button" %>

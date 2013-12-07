@@ -62,4 +62,26 @@ module ApplicationHelper
     message.html_safe
   end
 
+  def markdown(text)
+    render_options = {
+      filter_html: true,
+      hard_wrap:   true,
+      prettify:    true
+    }
+
+    renderer = Redcarpet::Render::HTML.new(render_options)
+
+    extensions = {
+      autolinks:          true,
+      no_intra_empasis:   true,
+      tables:             true,
+      fenced_code_blocks: true,
+      superscript:        true,
+      highlight:          true,
+      quote:              true
+    }
+
+    Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
+  end
+
 end

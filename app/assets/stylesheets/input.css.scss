@@ -1,0 +1,44 @@
+article {
+  section.user_input {
+    box-shadow: 5px 5px 5px 0px #333;
+    background-color: #fff;
+    padding: 0 10px;
+
+    blockquote {
+      background-color: #f5f5dc;
+      padding: 0 10px;
+    }
+
+    pre {
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #555;
+      color: #fff;
+    }
+
+    table {
+      border-collapse: collapse;
+
+      th {
+        background-color: #888;
+        color: #fff;
+        padding: 5px;
+      }
+
+
+      tr {
+        td {
+          padding: 5px;
+        }
+
+        &:nth-of-type(even) {
+          background-color: #f3f3f3;
+        }
+
+        &:nth-of-type(odd) {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+}
