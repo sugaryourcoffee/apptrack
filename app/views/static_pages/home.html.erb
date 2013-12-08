@@ -2,7 +2,26 @@
 
 <%= currently_at 'Home' %>
 
-<section>
+<section id='middle-section'>
+  <header>
+    <h1>Statistics</h1>
+  </header>
+  <p>
+    <strong>apptrack</strong> is hosting x projects with y tracks.
+    We have currently z users in apptrack.
+  </p>
+  <h3>Our top 10 projects</h3>
+  <table>
+    <thead>
+      <tr><th>Rank</th><th>Project</th><th>Tracks</th><th>Comments</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>some project</td><td>100</td><td>50</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id='left-section'>
   <header>
     <h1>Welcome to apptrack</h1>
   </header>
@@ -26,38 +45,16 @@
         just <%= link_to 'sign up', signup_path %> now.
       <% end %>
     </p>
+    <% unless current_user %>
+      <section id="button-section">
+        <%= link_to 'Sign up now!', signup_path, class: 'ok-button-large' %>
+        <%= link_to 'Sign in to your account', 
+                    signin_path, class: 'button-large' %>
+      </section class="button-section">
+    <% end %>
   </article>
+
 </section>
 
-<section>
-  <header>
-    <h2>Statistics</h2>
-  </header>
-  <p>
-    <strong>apptrack</strong> is hosting x projects with y tracks.
-    We have currently z users in apptrack.
-  </p>
-  <h3>Our top 10 projects</h3>
-  <table>
-    <thead>
-      <tr><th>Rank</th><th>Project</th><th>Tracks</th><th>Comments</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td>some project</td><td>100</td><td>50</td></tr>
-    </tbody>
-  </table>
-</section>
 
-<% unless current_user %>
-  <section>
-    <p>
-      No user yet?
-      <%= link_to 'Sign up now!', signup_path %>
-    </p>
 
-    <p>
-      Already have an account?
-      <%= link_to 'Sign in now!', signin_path %>
-    </p>
-  </section>
-<% end %>

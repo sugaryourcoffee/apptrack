@@ -42,6 +42,11 @@
   }
 }
 
+.button-large {
+  @extend .button;
+  font-size: 1.5em;
+}
+
 .ok-button {
   @extend .button;
   background: -moz-linear-gradient(
@@ -52,6 +57,11 @@
                 linear, left top, left bottom,
                 from(#7dd729),
                 to(#6ebd1e));
+}
+
+.ok-button-large {
+  @extend .ok-button;
+  font-size: 1.5em;
 }
 
 .delete-button {
