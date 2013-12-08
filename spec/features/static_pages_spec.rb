@@ -59,6 +59,20 @@ describe 'Static pages' do
 
     end
 
+    describe 'Statistics' do
+      let(:user) { User.create!(user_attributes) }
+      let!(:project) { Project.create!(project_attributes(user: user)) }
+      let!(:track) { project.tracks.create!(track_attributes(user: user)) }
+      let!(:comment) { track.comments.create!(comment_attributes(user: user)) }
+
+      it "should show statistics" do
+        visit root_path
+        expect(page).to have_content("1 project with 1 track.")
+        expect(page).to have_content("currently 1 user")
+        expect(page).to have_selector('td', text: project.title)
+      end
+    end
+
   end
 
   describe 'Help page' do

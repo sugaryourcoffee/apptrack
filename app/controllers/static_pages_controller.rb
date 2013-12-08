@@ -1,5 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
+    @user_count = User.count
+    @project_count = Project.count
+    @track_count = Track.count
+    @projects = Project.rank(10)
   end
 
   def help

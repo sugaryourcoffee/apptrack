@@ -23,6 +23,12 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
 
+  scope :top,
+    select("projects.id, count(tracks.id) as tracks_count").
+    joins('left join tracks on tracks.project_id = projects.id').
+    group("projects.id").
+    order("tracks_count DESC")
+
   validates :title, :description, presence: :true
 
   after_create :notify_created
@@ -30,6 +36,11 @@ class Project < ActiveRecord::Base
 
   def self.recent(count)
     order('updated_at desc').limit(count)
+  end
+
+  def self.rank(count)
+    ids = top.limit(count).collect { |project| project.id }
+    Project.find(ids)
   end
 
   private

@@ -7,16 +7,29 @@
     <h1>Statistics</h1>
   </header>
   <p>
-    <strong>apptrack</strong> is hosting x projects with y tracks.
-    We have currently z users in apptrack.
+    <strong>apptrack</strong> is hosting 
+    <%= pluralize(@project_count, 'project') %> with
+    <%= pluralize(@track_count, 'track') %>.  
   </p>
-  <h3>Our top 10 projects</h3>
+  <p>
+    We have currently <%= pluralize(@user_count, 'user') %> in apptrack.
+  </p>
+  <header>
+    <h2>Our top 10 projects</h2>
+  </header>
   <table>
     <thead>
       <tr><th>Rank</th><th>Project</th><th>Tracks</th><th>Comments</th></tr>
     </thead>
     <tbody>
-      <tr><td>1</td><td>some project</td><td>100</td><td>50</td></tr>
+      <% rank = 0 %>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= rank += 1 %></td>
+          <td><%= project.title %></td>
+          <td><%= project.tracks.count %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </section>
