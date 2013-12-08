@@ -35,7 +35,7 @@ describe 'Static pages' do
       end
 
       it "should have sign in link" do
-        expect(page).to have_link("Sign in now!", href: signin_path)
+        expect(page).to have_link("Sign in to your account", href: signin_path)
       end
 
     end
