@@ -4,11 +4,11 @@
   <%= render partial: 'shared/errors', locals: { attribute: @track } %>
   <fieldset>
     <ol>
-      <li>
+      <li class='required'>
         <%= f.label :title %>
         <%= f.text_field :title %>
       </li>
-      <li>
+      <li class='required'>
         <%= f.label :description %>
         <%= f.text_area :description, cols: 40, rows: 7 %>
       </li>

@@ -11,6 +11,19 @@ fieldset {
     margin-bottom: .25em;
   }
 
+  input, label {
+    display: block;
+  }
+
+  input, textarea {
+    overflow: hidden;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 1px;
+    border: 1px solid #808080;
+  }
+
   ol {
     list-style: none;
     margin: 0;
@@ -20,22 +33,16 @@ fieldset {
       margin: 0 0 20px 0;
       padding: 0;
 
-      &:required label {
+      &.required label {
         font-weight: bold;
       }
+
+      &.inline {
+        input, label {
+          display: inline;
+        }
+      }
     }
-  }
-
-  input, label {
-    display: block;
-  }
-
-  input, textarea {
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 6px;
-    box-shadow: 1px;
-    border: 1px solid #808080;
   }
 
   div.field_with_errors {

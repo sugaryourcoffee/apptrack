@@ -4,18 +4,18 @@
   <%= render partial: "shared/errors", locals: { attribute: @project } %>
   <fieldset>
     <ol>
-      <li>
+      <li class='required'>
         <%= f.label :title %>
         <%= f.text_field :title, autofocus: true %>
       </li>
-      <li>
+      <li class='required'>
         <%= f.label :description %>
         <%= f.text_area :description, cols: 40, rows: 7 %>
       </li>
       <%= render 'shared/markdown_instructions' %>
-      <li>
-        <%= f.label :active %>
+      <li class='inline'>
         <%= f.check_box :active %>
+        <%= f.label :active %>
       </li>
       <li>
         <%= f.label :contributors %>

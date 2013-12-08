@@ -10,21 +10,21 @@
   <%= render partial: 'shared/errors', locals: { attribute: @message } %>
   <fieldset>
     <ol>
-      <li>
+      <li class='required'>
         <%= f.label :email, t('.email') %>
         <%= f.text_field :email %>
       </li>
-      <li>
+      <li class='required'>
         <%= f.label :subject %>
         <%= f.text_field :subject %>
       </li>
-      <li>
+      <li class='required'>
         <%= f.label :message %>
-        <%= f.text_area :message %>
+        <%= f.text_area :message, cols: 50, rows: 7 %>
       </li>
-      <li>
-        <%= f.label :copy_me, t('.copy_me') %>
+      <li class='inline'>
         <%= f.check_box :copy_me %>
+        <%= f.label :copy_me, t('.copy_me') %>
       </li>
       <li>
         <%= f.submit 'Send', class: "ok-button" %>
