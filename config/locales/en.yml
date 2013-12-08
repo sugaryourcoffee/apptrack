@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  static_pages:
+    contact:
+      contact_description: "You can leave a message using the contact form below"
+      email:               "Enter your email address"
+      copy_me:             "Send myself a copy"

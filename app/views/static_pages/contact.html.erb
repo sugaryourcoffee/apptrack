@@ -3,3 +3,32 @@
 <%= currently_at('Home') %>
 
 <h1>Contact</h1>
+
+<p><%= t('.contact_description') %></p>
+
+<%= form_for @message, url: message_path do |f| %>
+  <%= render partial: 'shared/errors', locals: { attribute: @message } %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= f.label :email, t('.email') %>
+        <%= f.text_field :email %>
+      </li>
+      <li>
+        <%= f.label :subject %>
+        <%= f.text_field :subject %>
+      </li>
+      <li>
+        <%= f.label :message %>
+        <%= f.text_area :message %>
+      </li>
+      <li>
+        <%= f.label :copy_me, t('.copy_me') %>
+        <%= f.check_box :copy_me %>
+      </li>
+      <li>
+        <%= f.submit 'Send', class: "ok-button" %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

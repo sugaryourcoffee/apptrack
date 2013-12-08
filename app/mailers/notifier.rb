@@ -86,6 +86,17 @@ class Notifier < ActionMailer::Base
          subject: "[apptrack] New User has registered for apptrack"
   end
 
+  def user_contact(message)
+    @message = message
+
+    reciever = ["pierre@sugaryourcoffee.de"] 
+    reciever << message.email if message.copy_me
+    
+    mail from:    message.email,
+         to:      reciever.join(','),
+         subject: "[apptrack] #{message.subject}"
+  end
+
   def password_reset(user)
     @user = user
     mail to: user.email,

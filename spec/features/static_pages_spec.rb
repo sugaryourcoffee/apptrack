@@ -120,10 +120,15 @@ describe 'Static pages' do
     end
 
     it "should have contact form" do
-      fill_in 'E-Mail', with: 'user@example.com'
+      fill_in 'Enter your email address', with: 'user@example.com'
       fill_in 'Subject', with: 'Request for information'
       fill_in 'Message', with: 'Could you please provide ...'
+      check 'Send myself a copy'
       click_button 'Send' 
+      expect(last_email.to).to include 'user@example.com'
+      expect(last_email.subject).to eq '[apptrack] Request for information'
+      expect(last_email.body.encoded).to eq "Could you please provide ...\r\n"
+      expect(current_path).to eq root_path
     end
 
   end

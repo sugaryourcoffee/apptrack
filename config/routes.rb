@@ -5,6 +5,7 @@ Apptrack::Application.routes.draw do
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/message', to: 'static_pages#message', via: 'post'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
