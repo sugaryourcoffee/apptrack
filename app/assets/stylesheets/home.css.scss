@@ -33,6 +33,40 @@ styles {
     font-size: 1.15em;
     line-height: 1.25em;
   }
+
+  table {
+    line-height: 1.4em;
+    font-size: 1.1em;
+    width: 100%;
+
+    border-collapse: collapse;
+
+    th {
+      background-color: #888;
+      color: #fff;
+      padding: 5px;
+    }
+
+
+    tr {
+      td {
+        padding: 5px 8px;
+
+        &:nth-of-type(odd), &:last-child {
+          text-align: right;
+        }
+
+      }
+
+      &:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+
+      &:nth-of-type(odd) {
+        background-color: #ddd;
+      }
+    }
+  }
 }
 
 #left-section {

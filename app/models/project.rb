@@ -43,6 +43,14 @@ class Project < ActiveRecord::Base
     Project.find(ids)
   end
 
+  def tracks_count
+    tracks.count
+  end
+
+  def comments_count
+    tracks.map { |track| track.comments.count }.sum
+  end
+
   private
     
     def notify_created

@@ -9,13 +9,14 @@
   <p>
     <strong>apptrack</strong> is hosting 
     <%= pluralize(@project_count, 'project') %> with
-    <%= pluralize(@track_count, 'track') %>.  
+    <%= pluralize(@track_count, 'track') %> and 
+    <%= pluralize(@comment_count, 'comment') %>.
   </p>
   <p>
     We have currently <%= pluralize(@user_count, 'user') %> in apptrack.
   </p>
   <header>
-    <h2>Our top 10 projects</h2>
+    <h2>Our top projects</h2>
   </header>
   <table>
     <thead>
@@ -26,8 +27,9 @@
       <% @projects.each do |project| %>
         <tr>
           <td><%= rank += 1 %></td>
-          <td><%= project.title %></td>
-          <td><%= project.tracks.count %></td>
+          <td><%= link_to project.title, project_path(project) %></td>
+          <td><%= project.tracks_count %></td>
+          <td><%= project.comments_count %></td>
         </tr>
       <% end %>
     </tbody>

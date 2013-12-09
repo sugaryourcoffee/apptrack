@@ -67,7 +67,7 @@ describe 'Static pages' do
 
       it "should show statistics" do
         visit root_path
-        expect(page).to have_content("1 project with 1 track.")
+        expect(page).to have_content("1 project with 1 track and 1 comment.")
         expect(page).to have_content("currently 1 user")
         expect(page).to have_selector('td', text: project.title)
       end
