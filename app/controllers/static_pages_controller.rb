@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
     @project_count = Project.count
     @track_count = Track.count
     @comment_count = Comment.count
-    @projects = Project.rank(10)
+    @projects = Project.top.limit(10)
   end
 
   def help
