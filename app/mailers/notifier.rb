@@ -103,4 +103,14 @@ class Notifier < ActionMailer::Base
          subject: "[apptrack] Password reset request"
   end
 
+  def invitation(message)
+    @message = message
+
+    message.recipients << message.email if message.copy_me
+
+    mail from:    message.email,
+         to:      message.recipients,
+         subject: message.subject
+  end
+
 end

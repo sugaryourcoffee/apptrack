@@ -25,3 +25,9 @@ en:
       contact_description: "You can leave a message using the contact form below"
       email:               "Enter your email address"
       copy_me:             "Send myself a copy"
+
+    invite:
+      invitation_description: "You can send an invitation to contributors and users of your application with the form below"
+      sender:                 "Sender"
+      recipients:             "Recipients"
+      invitation_message:     "I would like you to join me on apptrack for collaborative application development"

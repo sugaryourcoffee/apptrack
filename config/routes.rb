@@ -2,10 +2,12 @@ Apptrack::Application.routes.draw do
 
   root "static_pages#home"
 
-  match '/help',    to: 'static_pages#help',    via: 'get'
-  match '/about',   to: 'static_pages#about',   via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/message', to: 'static_pages#message', via: 'post'
+  match '/help',       to: 'static_pages#help',       via: 'get'
+  match '/about',      to: 'static_pages#about',      via: 'get'
+  match '/contact',    to: 'static_pages#contact',    via: 'get'
+  match '/message',    to: 'static_pages#message',    via: 'post'
+  match '/invite',     to: 'static_pages#invite',     via: 'get'
+  match '/invitation', to: 'static_pages#invitation', via: 'post'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

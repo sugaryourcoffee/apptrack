@@ -66,6 +66,11 @@
         <%= link_to 'Sign in to your account', 
                     signin_path, class: 'button-large' %>
       </section class="button-section">
+    <% else %>
+      <section id="button-section">
+                  <%= link_to 'Invite to apptrack!', 
+                    invite_path, class: 'ok-button-large' %>
+      </section>
     <% end %>
   </article>
 

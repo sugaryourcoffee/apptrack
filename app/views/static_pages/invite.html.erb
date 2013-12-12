@@ -1,0 +1,38 @@
+<%= provide(:title, 'Invite') %>
+
+<%= currently_at('Home') %>
+
+<h1>Invitation</h1>
+
+<p><%= t('.invitation_description') %></p>
+
+<%= form_for @invitation, url: invitation_path do |f| %>
+  <%= render partial: 'shared/errors', locals: { attribute: @invitation } %>
+  <fieldset>
+    <ol>
+      <li class='required'>
+        <%= f.label :email, t('.sender') %>
+        <%= f.text_field :email, value: current_user.email, readonly: true %>
+      </li>
+      <li class='required'>
+        <%= f.label :recipients, t('.recipients') %>
+        <%= f.text_field :recipients %>
+      </li>
+      <li class='required'>
+        <%= f.label :subject %>
+        <%= f.text_field :subject, value: 'Join me on apptrack' %>
+      </li>
+      <li class='required'>
+        <%= f.label :message %>
+        <%= f.text_area :message, cols: 50, rows: 7, value: t('.invitation_message') %>
+      </li>
+      <li class='inline'>
+        <%= f.check_box :copy_me %>
+        <%= f.label :copy_me, t('.copy_me') %>
+      </li>
+      <li>
+        <%= f.submit 'Send invitation', class: "ok-button" %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

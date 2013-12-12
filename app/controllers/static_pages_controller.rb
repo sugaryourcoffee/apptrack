@@ -27,4 +27,20 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def invite
+    @invitation = Invitation.new(params[:invitation])
+  end
+
+  def invitation
+    @invitation = Invitation.new(params[:invitation])
+    unless @invitation.valid?
+      render 'invite'
+    else
+      Notifier.invitation(@invitation).deliver
+      redirect_to root_path, 
+                  notice: 'Thank you for sending an invitation for apptrack'
+                                     
+    end
+  end
+
 end

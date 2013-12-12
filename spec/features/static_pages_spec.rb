@@ -57,6 +57,46 @@ describe 'Static pages' do
         expect(page).not_to have_link('Sign in now!', href: signin_path)
       end
 
+      it "should have invite link" do
+        expect(page).to have_link('Invite to apptrack!', href: invite_path)
+      end
+
+      describe 'Send invitation' do
+        let(:user) { User.create!(user_attributes) }
+
+        it "should send invitation" do
+          valid_signin user
+          visit root_path
+
+          click_link 'Invite to apptrack!'
+
+          fill_in 'Recipients', with: 'u1@example.com, u2@example.com'
+
+          click_button 'Send invitation'
+
+          expect(current_path).to eq root_path
+
+          expect(last_email.from).to include 'pierre@sugaryourcoffee.de'
+          expect(last_email.to).to include *['u1@example.com', 'u2@example.com']
+          expect(last_email.subject).to eq 'Join me on apptrack'
+          expect(last_email.body.encoded).
+            to match 'I would like you to join me'
+        end
+
+        it "should not send invitation" do
+          valid_signin user
+          visit root_path
+
+          click_link 'Invite to apptrack!'
+
+          fill_in 'Recipients', with: ''
+
+          click_button 'Send invitation'
+
+          expect(current_path).to eq invitation_path
+        end
+      end
+
     end
 
     describe 'Statistics' do
