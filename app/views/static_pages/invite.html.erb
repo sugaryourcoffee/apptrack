@@ -16,7 +16,8 @@
       </li>
       <li class='required'>
         <%= f.label :recipients, t('.recipients') %>
-        <%= f.text_field :recipients %>
+        <%= f.text_field :recipients, 
+                         value: humanize_email(@invitation.recipients) %>
       </li>
       <li class='required'>
         <%= f.label :subject %>

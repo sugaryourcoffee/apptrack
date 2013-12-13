@@ -40,7 +40,7 @@ describe 'Invitation' do
     invitation = Invitation.new(invitation_attributes(recipients: "p@s.de, a"))
 
     expect(invitation.valid?).to be_false
-    expect(invitation.errors[:recipient].any?).to be_true
+    expect(invitation.errors[:recipients].any?).to be_true
   end
 
   it "should have a subject" do
