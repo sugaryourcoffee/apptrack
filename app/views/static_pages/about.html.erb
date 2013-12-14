@@ -20,3 +20,9 @@
   <h3>Test</h3>
   <p>Amanda, Pierre</p>
 </section>
+
+<% content_for :secondary_nav do %>
+  <%= breadcrumbs [link_to('Home', root_path),
+                   'About us' ] %>
+<% end %>
+

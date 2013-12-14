@@ -7,3 +7,10 @@
     <h1>Help</h1>
   </header>
 </section>
+
+<% content_for :secondary_nav do %>
+  <%= breadcrumbs [link_to('Home', root_path),
+                   'Help' ] %>
+<% end %>
+
+

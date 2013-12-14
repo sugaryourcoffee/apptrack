@@ -32,3 +32,9 @@
     </ol>
   </fieldset>
 <% end %>
+
+<% content_for :secondary_nav do %>
+  <%= breadcrumbs [link_to('Home', root_path),
+                   'Contact' ] %>
+<% end %>
+

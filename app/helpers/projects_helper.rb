@@ -33,4 +33,21 @@ module ProjectsHelper
   def category_types(tracks)
     (tracks.collect { |t| t.category }).compact.uniq
   end
+
+  def tracks_status_headline(project)
+    headline = ""
+    first = true
+    Track.status_stats(project.id).count.each do |k,v|
+      if first
+        first = false
+      else
+        headline << ", "
+      end
+
+      headline << "#{v} #{k}"
+
+    end
+
+    headline.html_safe
+  end
 end

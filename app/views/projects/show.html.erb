@@ -34,7 +34,10 @@
   </p>
 </article>
 
-<h2><%= pluralize(@tracks.size, "Track") %></h2>
+<h2>
+  <%= pluralize(@tracks.size, "Track") %>
+  (<%= tracks_status_headline(@project) %>)
+</h2>
 
 <section id="filter">
   <%= render "filter" %>

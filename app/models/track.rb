@@ -24,6 +24,10 @@ class Track < ActiveRecord::Base
 
   default_scope { order('status DESC').order('sequence ASC') }
 
+  scope :status_stats, ->(the_project_id) {
+          group(:status).where('project_id = ?', the_project_id)
+        }
+
   CATEGORY_TYPES = ["Feature", "Issue"]
 
   STATUS_TYPES = ["Open", "Processing", "Done", "Postponed", "Rejected"]

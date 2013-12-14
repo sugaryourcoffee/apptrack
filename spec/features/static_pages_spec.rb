@@ -129,6 +129,10 @@ describe 'Static pages' do
       expect(page).to have_title("#{base_title} | Help")
     end
 
+    it "should have breadcrumbs" do
+      expect(page).to have_text("HomeHelp")
+    end
+    
     it "should have h1 'Help'" do
       expect(page).to have_selector('h1', text: 'Help')
     end
@@ -143,6 +147,10 @@ describe 'Static pages' do
       expect(page).to have_link('Home', href: root_path)
       expect(page).to have_link('Projects', href: projects_path)
       expect(page).to have_link('Members', href: users_path)
+    end
+
+    it "should have breadcrumbs" do
+      expect(page).to have_text("HomeAbout us")
     end
 
     it "should have title 'About us'" do
@@ -167,6 +175,10 @@ describe 'Static pages' do
     
     it "should have title 'Contact'" do
       expect(page).to have_title("#{base_title} | Contact")
+    end
+
+    it "should have breadcrumbs" do
+      expect(page).to have_text("HomeContact")
     end
 
     it "should have h1 'Contact'" do

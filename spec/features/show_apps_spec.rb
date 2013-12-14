@@ -27,4 +27,21 @@ describe "Show project details" do
     expect(page).to have_text(app.tracks[0].description)
   end
   
+  it "should show count of tracks status" do
+    app = Project.create(project_attributes(user: user))
+    track1 = app.tracks.create(track_attributes(user: user,
+                                                status: 'Done'))
+    track2 = app.tracks.create(track_attributes(user: user,
+                                                status: 'Processing'))
+    track3 = app.tracks.create(track_attributes(user: user,
+                                                status: 'Processing'))
+    track4 = app.tracks.create(track_attributes(user: user))
+
+    visit project_url(app)
+
+    expect(page).to have_text '4 Tracks'
+    expect(page).to have_text '1 Open'
+    expect(page).to have_text '1 Done'
+    expect(page).to have_text '2 Processing'
+  end
 end
