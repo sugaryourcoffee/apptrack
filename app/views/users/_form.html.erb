@@ -20,7 +20,7 @@
       </li>
       <p>
         <%= f.submit class: "button" %> | 
-        <%= link_to "Cancel", :back %>
+        <%= link_to "Cancel", return_path_or(:back) %>
       </p>
       <% if signed_in? %>
         <p>

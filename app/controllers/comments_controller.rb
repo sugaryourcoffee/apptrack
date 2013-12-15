@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :owner,          only: [:edit, :update, :destroy]
+  before_action :store_previous_page, only: [:new, :edit]
 
   def new
     @comment = Comment.new
@@ -33,8 +34,8 @@ class CommentsController < ApplicationController
     @project = @track.project
 
     if @comment.update(comment_params)
-      redirect_to project_track_path(@project, @track), 
-                  notice: "Comment successfully updated!"
+      flash[:notice] = "Comment successfully updated!"
+      redirect_back_or project_track_path(@project, @track)
     else
       render :edit
     end

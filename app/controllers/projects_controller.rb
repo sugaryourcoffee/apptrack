@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :owner,          only: [:edit, :update, :destroy]
+  before_action :store_previous_page,  only: [:new, :edit]
 
   def index
     @projects = Project.all
@@ -26,7 +27,8 @@ class ProjectsController < ApplicationController
                                       reject(&:empty?))
     @project.user = current_user
     if @project.save
-      redirect_to @project, notice: "Application successfully created!"
+      flash[:notice] = "Application successfully created!"
+      redirect_to @project
     else
       render :new
     end
@@ -40,7 +42,8 @@ class ProjectsController < ApplicationController
                                       reject(&:empty?))
 
     if @project.update(project_params)
-      redirect_to projects_path, notice: "Application successfully updated!"
+      flash[:notice] = "Application successfully updated!"
+      redirect_back_or projects_path
     else
       render :edit
     end

@@ -37,4 +37,12 @@ module SessionsHelper
   def store_location
     session[:return_to] = request.url if request.get?
   end
+
+  def store_referer
+    session[:return_to] = request.referer
+  end
+
+  def return_path_or(default)
+    session[:return_to] || default
+  end
 end

@@ -2,6 +2,7 @@ class TracksController < ApplicationController
 
   before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :owner,          only: [:edit, :update, :destroy]
+  before_action :store_previous_page, only: [:new, :edit]
 
   def show
     @track = Track.find(params[:id])
@@ -33,8 +34,8 @@ class TracksController < ApplicationController
     @project = Project.find(params[:project_id])
 
     if @track.update(track_params)
-      redirect_to project_track_path(@project, @track), 
-                  notice: "Track successfully updated!"
+      flash[:notice] = 'Track successfully updated!'
+      redirect_back_or project_track_path(@project, @track)
     else
       render :edit
     end

@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+  before_action :store_previous_page, only: [:new, :edit]
 
   def index
     @users = User.all
@@ -32,7 +33,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      redirect_to @user, notice: "Your account has been successfully updated"
+      flash[:notice] = "Your account has been successfully updated"
+      redirect_back_or @user
     else
       render 'edit'
     end
