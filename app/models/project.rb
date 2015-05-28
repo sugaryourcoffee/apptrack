@@ -23,11 +23,11 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
 
-  scope :top,
+  scope :top, -> {
     select("projects.*, count(tracks.id) as tracks_count").
     joins('left join tracks on tracks.project_id = projects.id').
     group("projects.id").
-    order("tracks_count DESC")
+    order("tracks_count DESC") }
 
   validates :title, :description, presence: :true
 

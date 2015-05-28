@@ -24,7 +24,7 @@ class Track < ActiveRecord::Base
 
   default_scope { order('status DESC').order('sequence ASC') }
 
-  scope :status_stats, ->(the_project_id) {
+  scope :status_stats, -> (the_project_id) {
           group(:status).where('project_id = ?', the_project_id)
         }
 
