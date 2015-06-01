@@ -18,7 +18,7 @@ bundler_stubs/
 .DS_Store
 
 # Ignore config/database.yml
-config/database.yml
+/config/database.yml
 
 # Ignore all logfiles and tempfiles.
 *.sw?
