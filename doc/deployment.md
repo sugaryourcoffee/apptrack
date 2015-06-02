@@ -189,7 +189,7 @@ Next we will prepare our client machine for deployment.
 
 Prepare the client machine for deployment
 -----------------------------------------
-In order to deploy our application we need to do add some gems, namely mysql and capistrano. We will use MySQL database for our production application and the Capistrano is used for deploying our application from the client machine to the production machine.
+In order to deploy our application we need to add some gems, namely mysql and capistrano. We will use MySQL database for our production application and Capistrano is used for deploying our application from the client machine to the production machine.
 
 ###Add the MySQL Gem
 In the Gemfile we add the MySQL gem into the production group
@@ -203,4 +203,122 @@ To deploy our application from the client to the server we add the Capistrano ge
       gem 'capistrano'
       gem 'capistrano-bundler'
       gem 'capistrano-rails'
+    end
+
+###Install the required Gems
+To install the gems capistrano and mysql2 we run bundle install
+
+    $ bundle install
+    
+###Change the production database to MySQL 2
+Change the production block in config/database.yml to
+
+    production:
+      adapter: mysql2
+      encoding: utf8
+      reconnect: false
+      database: apptrack_production
+      pool: 5
+      username: user
+      password: password
+      host: localhost
+
+and add config/database.yml to your .gitignore file otherwise your database credentials will be publicaly available.
+
+###Setup Captistrano
+To set up Capistrano we have to follow these steps
+
+* Create the configuration files `capify .`
+* Assign a host name to the IP address of our deployment machine in /etc/hosts
+* Configure config/deploy.rb
+* Configure config/deploy/production.rb
+
+####Create the configuration files
+To create the configuration files we issue
+
+    $ capify .
+
+This will create the Capfile, config/deploy.rb and config/deploy/production.rb
+
+####Assign a host name to the IP address of our deployment machine
+We have to tell Capistrano where to deploy our application to. This we do in the config/deploy/production.rb. We could add the IP-address of our deployment machine but we also could map a host name to the IP-address, which is more readable. To do so we put the mapping into /etc/hosts
+
+    192.168.178.61 apptrack.uranus
+
+###Create a private key without password
+When we want to deploy our application Capistrano will ssh to our application server. To avoid entering the password during ssh we want to create a private key without password.
+
+    $ cd ~/.ssh
+    $ ssh-keygen
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/home/pierre/.ssh/id_rsa): deploy
+    Enter passphrase (empty for no passphrase):
+    Enter same passphrase again:
+    Your identification has been saved in deploy.
+    Your public key has been saved in deploy.rb
+
+When asked for a passphrase just enter return to ommit the passphrase.
+
+Now copy your public key to your application server to your account.
+
+    $ scp ~/.ssh/deploy.pub me@applicationserver:key
+
+ssh to your application server
+ 
+    $ ssh me@applicationserver
+
+On your server add the public key to authorized keys
+
+    $ cat key >> ~/.ssh/authorized_keys
+
+Log out from your server and log in again. Now you should not need to enter a password.
+
+####Configura config/deploy/production.rb
+We add following lines to config/deploy/production.rb so Capistrano knows where to deploy the application to
+
+set :domain, 'apptrack.uranus'
+
+role :app, %w{domain}
+role :web, %w{domain}
+role :db,  %w{localhost}, primary: :true
+
+####Configure config/deploy.rb
+Add following to config/deploy.rb
+
+    set: :application 'apptrack'
+    set: :repo_url, 'git@github.com:sugaryourcoffee/apptrack.git'
+    set: :branch, 'master'
+
+    set: :deploy_to, '/var/www/apptrack'
+    set: :scm, :git
+
+    set: :key_releases, 5
+
+    namespace :deploy do
+
+      desc 'Restart application'
+      task: :restart do
+        on roles(:app), in: :sequence, wait: 5 do
+          execute :touch, release_path.join('tmp/restart.txt')
+        end
+      end
+
+      desc 'Copy database.yml file into the latest release'
+      task :copy_database_yml do
+        on roles(:app) do
+          execute :cp, shared_path.join('confit/database.yml'),
+                       release_path.join('config/')
+        end
+      end
+
+      after :restart, :clear_cache do
+        on roles(:web), in: :groups, limit: 3, wait: 10 do
+          within release_path do
+            execute :rake, 'tmp:clear'
+          end
+        end
+      end
+
+      before :updated, 'deploy:copy_database_yml'
+      after :finishing, 'deploy:cleanup'
     end

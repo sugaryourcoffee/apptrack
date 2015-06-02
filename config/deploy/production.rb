@@ -6,9 +6,9 @@ set :rails_env, 'production'
 # Supports bulk-adding hosts to roles, the primary
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
-role :app, %w{localhost}
-role :web, %w{localhost}
-role :db,  %w{localhost}, primary: :true
+role :app, %w{apptrack.uranus}
+role :web, %w{apptrack.uranus}
+role :db,  %w{apptrack.uranus}, primary: :true
 
 # Extended Server Syntax
 # ======================
@@ -28,14 +28,13 @@ role :db,  %w{localhost}, primary: :true
 #    auth_methods: %w(password)
 #  }
 # and/or per server
-server 'localhost',
-   user: 'vagrant',
-   group: 'vagrant',
+server 'apptrack.uranus',
+   user: 'pierre',
+   group: 'pierre',
    roles: %w{web app db},
    ssh_options: {
-     user: 'vagrant', # overrides user setting above
-     port: 2222,
-     keys: %w(~/.vagrant.d/insecure_private_key),
+     user: 'pierre', # overrides user setting above
+     keys: %w(~/.ssh/deploy),
      forward_agent: false,
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'

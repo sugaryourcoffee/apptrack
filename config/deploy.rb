@@ -4,7 +4,7 @@ set :branch, 'master'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
-set :deploy_to, '/var/apptrack'
+set :deploy_to, '/var/www/apptrack'
 set :scm, :git
 
 # set :format, :pretty
