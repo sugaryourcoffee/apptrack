@@ -34,8 +34,8 @@ server 'apptrack.uranus',
    roles: %w{web app db},
    ssh_options: {
      user: 'pierre', # overrides user setting above
-     keys: %w(~/.ssh/deploy),
-     forward_agent: false,
+     keys: %w(~/.ssh/id_rsa),
+     forward_agent: true,
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
    }

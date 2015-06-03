@@ -14,7 +14,7 @@ set :scm, :git
 #set :linked_files, %w{config/database.yml}
 #set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
-#set :default_env, { path: "/usr/local/bin/ruby:$PATH" }
+#set :default_env, { path: "/home/pierre/.rvm/gems/ruby-2.0.0-p643@rails401:$PATH" }
 set :keep_releases, 5
 
 namespace :deploy do

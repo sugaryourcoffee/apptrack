@@ -48,6 +48,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'capistrano',         group: :development
 gem 'capistrano-bundler', group: :development
 gem 'capistrano-rails',   group: :development
+gem 'rvm-capistrano',     group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

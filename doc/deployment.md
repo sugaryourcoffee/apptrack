@@ -273,14 +273,37 @@ On your server add the public key to authorized keys
 
 Log out from your server and log in again. Now you should not need to enter a password.
 
+This is not neccessarily the most secure option.
+
+####Add a key to pull from github
+When deploying Capistrano will fetch our application from Github. In order to do so we will need a key so Github allows access to download the application. The easy way is to copy the key from our deployment machine, which should already have a key for Github or we can create another key on the server and then make it available to Github. In eather way we have to start ssh-agent so we don't have to provide the password.
+
+First we need to start ssh-agent
+
+    $ eval $(ssh-agent)
+
+Then we issue ssh-add which will add the default key to the ssh-agent after we provide the password for the key.
+
+    $ ssh-add
+
 ####Configura config/deploy/production.rb
 We add following lines to config/deploy/production.rb so Capistrano knows where to deploy the application to
 
 set :domain, 'apptrack.uranus'
 
-role :app, %w{domain}
-role :web, %w{domain}
-role :db,  %w{localhost}, primary: :true
+role :app, [domain]
+role :web, [domain]
+role :db,  [localhost], primary: :true
+
+server domain,
+       user: 'deployer',
+       group: 'deployers',
+       roles: %w{web app db},
+       ssh_options: {
+         user: 'deployer',
+         keys: %w(~/.ssh/id_rsa),
+         forward_agent: true
+       }
 
 ####Configure config/deploy.rb
 Add following to config/deploy.rb
@@ -322,3 +345,17 @@ Add following to config/deploy.rb
       before :updated, 'deploy:copy_database_yml'
       after :finishing, 'deploy:cleanup'
     end
+
+####Make deployment directory writeable by the deployment user
+We want to deploy to /var/www/apptrack. But this directory is owned by root. In order to deploy with our deployment user we have to change the group owning the deployment directory to the group of the deployment user.
+
+    $ sudo chgrp deployers /var/www
+
+In order to give the deployers write access to /var/www we issue
+
+    $ sudo chmod g+w /var/www
+
+####Deploy the application
+Now we are good to go for deployment
+
+    $ cap production deploy
