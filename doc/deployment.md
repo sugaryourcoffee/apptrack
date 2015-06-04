@@ -212,10 +212,12 @@ To install the gems capistrano and mysql2 we run bundle install
     $ bundle install
     
 ###Change the production database to MySQL 2
-When we use a production database we have to provide the credentials in the config/database.yml file. We of course don't want this file not managed by a public Github repository. Therefore we copy the default config/database.yml file to config/database.yml.example add put the config/database.yml to the .gitignore file
+When we use a production database we have to provide the credentials in the config/database.yml file. We of course don't want this file not managed by a public Github repository. Therefore we move the default config/database.yml file to config/database.yml.example and put the config/database.yml to the .gitignore file
 
-    $ mv config/database.yml{.example}
     $ echo config/database.yml >> .gitignore
+    $ mv config/database.yml{.example}
+
+Then commit your changes and copy the config/database.yml.example to config/database.yml.
 
 Change the production block in config/database.yml to
 
@@ -325,6 +327,17 @@ Add following to config/deploy.rb
     set: :scm, :git
 
     set: :key_releases, 5
+
+    namespace :setup do
+      desc "Upload database.yml to the server"
+      task: :upload_database_yml do
+        on roles(:app) do
+          execute :mkdir, 'p', shared_path.join('config')
+          upload! StringIO.new(File.read('config/database.yml')),
+                  shared_path.join('config/database.yml')
+        end
+      end
+    end
 
     namespace :deploy do
 

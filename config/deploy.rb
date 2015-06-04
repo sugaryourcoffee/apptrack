@@ -41,8 +41,13 @@ namespace :deploy do
   desc 'Copy database.yml file into the latest release'
   task :copy_database_yml do
     on roles(:app) do
+      unless test("[ -f #{shared_path}/config/database.yml ]")
+        execute :mkdir, '-p', sharded_path.join('config')
+        upload! StringIO.new(File.read("config/database.yml")),
+                shared_path.join('config/database.yml')
+      end
       execute :cp, shared_path.join('config/database.yml'), 
-                     release_path.join('config/')
+                   release_path.join('config/')
     end
   end
 
