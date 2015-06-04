@@ -351,6 +351,11 @@ Add following to config/deploy.rb
       desc 'Copy database.yml file into the latest release'
       task :copy_database_yml do
         on roles(:app) do
+          unless test("[ -f #{shared_path}/config/database.yml ]")
+            execute :mkdir, '-p', shared_path.join('config')
+            upload! StringIO.new(File.read("config/database.yml")),
+                    shared_path.join('config/database.yml')
+          end
           execute :cp, shared_path.join('confit/database.yml'),
                        release_path.join('config/')
         end
