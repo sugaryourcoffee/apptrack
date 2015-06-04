@@ -203,6 +203,7 @@ To deploy our application from the client to the server we add the Capistrano ge
       gem 'capistrano'
       gem 'capistrano-bundler'
       gem 'capistrano-rails'
+      gem 'capistrano-rvm'
     end
 
 ###Install the required Gems
@@ -211,6 +212,11 @@ To install the gems capistrano and mysql2 we run bundle install
     $ bundle install
     
 ###Change the production database to MySQL 2
+When we use a production database we have to provide the credentials in the config/database.yml file. We of course don't want this file not managed by a public Github repository. Therefore we copy the default config/database.yml file to config/database.yml.example add put the config/database.yml to the .gitignore file
+
+    $ mv config/database.yml{.example}
+    $ echo config/database.yml >> .gitignore
+
 Change the production block in config/database.yml to
 
     production:
@@ -285,6 +291,9 @@ First we need to start ssh-agent
 Then we issue ssh-add which will add the default key to the ssh-agent after we provide the password for the key.
 
     $ ssh-add
+
+####Configure the Capfile
+Uncomment `require 'capistrano/rvm'
 
 ####Configura config/deploy/production.rb
 We add following lines to config/deploy/production.rb so Capistrano knows where to deploy the application to
