@@ -42,7 +42,7 @@ namespace :deploy do
   task :copy_database_yml do
     on roles(:app) do
       unless test("[ -f #{shared_path}/config/database.yml ]")
-        execute :mkdir, '-p', sharded_path.join('config')
+        execute :mkdir, '-p', shared_path.join('config')
         upload! StringIO.new(File.read("config/database.yml")),
                 shared_path.join('config/database.yml')
       end
