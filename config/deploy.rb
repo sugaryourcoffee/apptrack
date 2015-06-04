@@ -17,6 +17,17 @@ set :scm, :git
 #set :default_env, { path: "/home/pierre/.rvm/gems/ruby-2.0.0-p643@rails401:$PATH" }
 set :keep_releases, 5
 
+namespace :setup do
+  desc "Upload database.yml to config/database.yml on the server"
+  task :upload_database_yml do
+    on roles(:app) do
+      execute :mkdir, '-p', shared_path.join('config')
+      upload! StringIO.new(File.read("config/database.yml")), 
+              shared_path.join('config/database.yml')
+    end
+  end
+end
+
 namespace :deploy do
 
   desc 'Restart application'
