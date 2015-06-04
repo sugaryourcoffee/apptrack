@@ -18,7 +18,7 @@ bundler_stubs/
 .DS_Store
 
 # Ignore config/database.yml
-/config/database.yml
+config/database.yml
 
 # Ignore all logfiles and tempfiles.
 *.sw?
@@ -42,4 +42,3 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 >>>>>>> 3da7de0352769dec7f7fcae8dc07e45bb6574f3b
-config/database.yml
