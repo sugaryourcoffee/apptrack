@@ -155,19 +155,22 @@ We have add some code to apache2.conf in order to start up passenger. We could a
      PassengerRoot /home/pierre/.rvm/gems/ruby-2.0.0-p643@rails401/gems/passenger-5.0.8
      PassengerDefaultRuby /home/pierre/.rvm/gems/ruby-2.0.0-p643@rails401/wrappers/ruby
    </IfModule>
-```
+````
 
 Then we invoke a2enconf passenger.conf to mark the passenger.conf as enabled.
+
+###Configure the port to listen on
+As we don't want to listen on the default port 80 instead on 8080 we have to add the `Listen 8080` directive to /etc/apache2/ports.conf
 
 ###Configure a virtual host for apptrack
 Now we configure Apache2 to find our application and create a virtual host in /etc/apache2/sites-available/apptrack.conf
 
 ```
-   <VirtualHost *:80>
+   <VirtualHost *:8080>
       ServerName apptrack
       DocumentRoot /var/www/apptrack/current/public    
       PassengerRuby  /home/pierre/.rvm/gems/ruby-2.0.0-p643@rails401/wrappers/ruby
-      <Directory /var/www/apptrack/public>
+      <Directory /var/www/apptrack/current/public>
          # This relaxes Apache security settings.
          AllowOverride all
          # MultiViews must be turned off.
@@ -300,6 +303,7 @@ Uncomment `require 'capistrano/rvm'
 ####Configura config/deploy/production.rb
 We add following lines to config/deploy/production.rb so Capistrano knows where to deploy the application to
 
+````
 set :domain, 'apptrack.uranus'
 
 role :app, [domain]
@@ -315,6 +319,7 @@ server domain,
          keys: %w(~/.ssh/id_rsa),
          forward_agent: true
        }
+````
 
 ####Configure config/deploy.rb
 Add following to config/deploy.rb
@@ -381,8 +386,31 @@ We want to deploy to /var/www/apptrack. But this directory is owned by root. In 
 In order to give the deployers write access to /var/www we issue
 
     $ sudo chmod g+w /var/www
-
+ 
 ####Deploy the application
 Now we are good to go for deployment
 
     $ cap production deploy
+
+####Check up the application
+Now we should be able to access the application from a browser with
+
+    http://apptrack.uranus:8080
+
+If not we can check the the web server with
+
+    $ passenger-status
+    $ passenger-memory-stats
+
+To see if Apache 2 and Passenger is configured correctly we can use
+
+    $ passenger-config validate-install
+
+####Create an Admin User
+A final step we have to conduct. We don't want to create admin users from the application. First sign up as a new user at the apptrack application. To give your account admin user rights we have to do that over the console
+
+    $ rails c production
+    > user = User.first
+    > user.toggle!(:admin)
+    > exit
+    
