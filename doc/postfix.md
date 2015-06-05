@@ -25,12 +25,12 @@ use case. Before we start some hints.
 At some point of the installation/configuration process you will be asked how 
 to forward the emails.
 
-|Type                   |Description                                         |
-|-----------------------+----------------------------------------------------|
-|Internet               |In this case you will need a public internet address|
-|Intenet with smart host|relay email over your ISP                           |
-|Sattlite               |Only for outgoing email                             |
-|Local                  |Send emails only within LAN                         |
+| Type                    | Description                                        |
+| ----------------------- | ---------------------------------------------------|
+| Internet                |In this case you will need a public internet address|
+| Intenet with smart host |relay email over your ISP                           |
+| Sattlite                |Only for outgoing email                             |
+| Local                   |Send emails only within LAN                         |
 
 In our case we want to use internet with *smart host*.
 
