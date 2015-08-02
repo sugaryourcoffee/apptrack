@@ -183,6 +183,11 @@ Now we configure Apache2 to find our application and create a virtual host in /e
 ```
 In the above code we add `PassengerRuby` to indicate when launching apptrack we want to use the ruby in the `ruby-2.0.0-p643@rails401` gemset. If we have another application we can launch it with a different Ruby version.
 
+Next we need to enable our virtual host apptrack as it is only available but not
+enabled. To enable it we call
+
+    $ sudo e2ensite apptrack.conf
+
 Now we restart Apache 2 with `sudo apachectl restart`. As we don't have the application deployed yet, we will see an error message from Apache 2 which we happily read as it indicates that our virtual host is recognized by Apache 2.
 
     $ sudo apachectl restart
@@ -298,9 +303,9 @@ Then we issue ssh-add which will add the default key to the ssh-agent after we p
     $ ssh-add
 
 ####Configure the Capfile
-Uncomment `require 'capistrano/rvm'
+Uncomment `require 'capistrano/rvm'`
 
-####Configura config/deploy/production.rb
+####Configure config/deploy/production.rb
 We add following lines to config/deploy/production.rb so Capistrano knows where to deploy the application to
 
 ````
