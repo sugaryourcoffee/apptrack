@@ -61,8 +61,8 @@ For the production database we use MySQL. We now create a production database.
 
     $ mysql -u root -p
     mysql> create database apptrack_production default character set utf8;
-    mysql> grant all preveleges on apptrack_production.*
-        -> to 'pierre@localhost' identified by 'secret_password';
+    mysql> grant all privileges on apptrack_production.*
+        -> to 'pierre'@'localhost' identified by 'secret_password';
     mysql> exit
 
 Install Nodejs
