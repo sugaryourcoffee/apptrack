@@ -20,12 +20,12 @@
       <li>
         <%= f.label :category %>
         <%= f.select :category, Track::CATEGORY_TYPES, 
-                     selected: 'Feature' %>
+                     selected: (@track.category || 'Feature') %>
       </li>
       <li>
         <%= f.label :status %>
         <%= f.select :status, Track::STATUS_TYPES,
-                     selected: 'Open' %>
+                     selected: (@track.status || 'Open') %>
       </li>
       <li>
         <%= f.label :sequence %>

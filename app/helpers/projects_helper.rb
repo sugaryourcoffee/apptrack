@@ -9,16 +9,15 @@ module ProjectsHelper
   end
 
   def row_status_color(status)
-    if status == "Done"
-      "done"
-    elsif status == "Rejected"
-      "rejected"
-    elsif status == "Postponed"
-      "postponed"
-    elsif status == "Processing"
+    row_status = status.scan(/\w+/).first
+
+    case row_status
+    when nil
+      cycle('list_line_odd', 'list_line_even')
+    when "Processing"
       "processing #{cycle('list_line_odd', 'list_line_even')}"
     else
-      cycle('list_line_odd', 'list_line_even')
+      row_status.downcase
     end
   end
 
