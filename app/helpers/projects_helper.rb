@@ -12,7 +12,7 @@ module ProjectsHelper
     row_status = status.scan(/\w+/).first
 
     case row_status
-    when nil
+    when "Open"
       cycle('list_line_odd', 'list_line_even')
     when "Processing"
       "processing #{cycle('list_line_odd', 'list_line_even')}"
