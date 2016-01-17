@@ -22,11 +22,14 @@ class Track < ActiveRecord::Base
 
   before_save :clear_sequence
 
-  default_scope { order('status DESC').order('sequence ASC') }
+#  default_scope { order('status DESC').order('sequence ASC') }
 
   scope :status_stats, -> (the_project_id) {
           group(:status).where('project_id = ?', the_project_id)
         }
+  scope :by_status, -> { order('status DESC') }
+  scope :by_sequence, -> { order('sequence ASC') }
+  scope :by_updated_at, -> { order('updated_at, created_at') }
 
   CATEGORY_TYPES = ["Feature", "Issue"]
 

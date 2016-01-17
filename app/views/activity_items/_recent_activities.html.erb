@@ -1,12 +1,16 @@
+<h3>Users</h3>
 <% User.recent(3).each do |user| %>
   <p><%= recent_user(user) %></p>
 <% end %>
+<h3>Projects</h3>
 <% Project.recent(3).each do |project| %>
   <p><%= recent_project(project) %></p>
 <% end %>
+<h3>Tracks</h3>
 <% Track.recent(3).each do |track| %>
   <p><%= recent_track(track) %></p>
 <% end %>
+<h3>Comments</h3>
 <% Comment.recent(3).each do |comment| %>
   <p><%= recent_comment(comment) %></p>
 <% end %>

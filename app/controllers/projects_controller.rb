@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @tracks = Track.filter(params)
+    @tracks = Track.filter(params).by_status.by_sequence
     respond_to do |format|
       format.html
       format.js

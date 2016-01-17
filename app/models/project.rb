@@ -29,6 +29,8 @@ class Project < ActiveRecord::Base
     group("projects.id").
     order("tracks_count DESC") }
 
+  scope :by_updated_at, -> { order('updated at, created_at') }
+
   validates :title, :description, presence: :true
 
   after_create :notify_created

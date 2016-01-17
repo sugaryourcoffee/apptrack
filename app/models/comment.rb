@@ -17,6 +17,8 @@ class Comment < ActiveRecord::Base
 
   validates :title, :comment, presence: true
 
+  scope :by_updated_at, -> { order('updated_at, created_at') }
+
   after_create :notify_created
   after_update :notify_updated
 

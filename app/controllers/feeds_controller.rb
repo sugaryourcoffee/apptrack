@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
   end
 
   def tracks
-    @tracks = Track.order("updated_at, created_at").limit(11)
+    @tracks = Track.by_updated_at.limit(11)
   end
 
   def comments
