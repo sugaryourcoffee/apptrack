@@ -33,7 +33,7 @@ class Track < ActiveRecord::Base
                                   when 'Rejected' then 5
                                   end}) }
 
-  scope :by_sequence, -> { order('sequence ASC') }
+  scope :by_sequence, -> { order('sequence') }
   scope :by_updated_at, -> { order('updated_at, created_at') }
 
   CATEGORY_TYPES = ["Feature", "Issue"]

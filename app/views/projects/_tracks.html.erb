@@ -1,6 +1,7 @@
 <ul id="tracks">
   <table> 
     <thead>
+      <th>Sequence</th>
       <th>Title</th>
       <th>Description</th>
       <th>Comments</th>
@@ -10,6 +11,7 @@
         <tr data-link="<%= project_track_path(@project, track) %>"
           class="<%= row_status_color(track.status) %> data"
           title="<%= "#{track.sequence}-#{track.status}-#{track.category}" %>">
+          <td class="first"><%= track.sequence %></td>
           <td 
             class="first"><%= link_to track.title,
                                       project_track_path(@project, track) %>
