@@ -11,6 +11,10 @@ module ProjectsHelper
   def row_status_color(status)
     if status == "Done"
       "done"
+    elsif status == "Rejected"
+      "rejected"
+    elsif status == "Postponed"
+      "postponed"
     elsif status == "Processing"
       "processing #{cycle('list_line_odd', 'list_line_even')}"
     else

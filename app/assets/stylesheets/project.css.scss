@@ -150,6 +150,18 @@ ul#tracks {
       background: #006302;
     }
 
+    .postponed {
+      background: #ffcc00;
+    }
+
+    .rejected {
+      a, a:link, a:visited {
+        color: #ffffff;
+      }
+      color: #ffffff;
+      background: #cc0000;
+    }
+
     .processing {
       font-style: italic;
     }
