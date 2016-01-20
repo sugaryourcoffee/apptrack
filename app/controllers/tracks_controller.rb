@@ -93,10 +93,7 @@ class TracksController < ApplicationController
               end
       @track.status = Track::STATUS_TYPES[index]
       if @track.save
-        respond_to do |format|
-          format.html
-          format.js { redirect_to @project }
-        end
+        redirect_to @project
       end
     end
 

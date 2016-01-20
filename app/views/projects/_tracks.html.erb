@@ -12,14 +12,16 @@
         <tr data-no-turbolink
           class="<%= row_status_color(track.status) %> data"
           title="<%= "#{track.sequence}-#{track.status}-#{track.category}" %>">
-          <td class="link_icon-top"><%= link_to "",
+          <td class="link-icon-top">
+            <%= link_to "<div class=\"down-arrow-button\"></div>".html_safe,
             sec_down_track_path(track, project_id: @project),
-            id: "sec-down-#{track.id}", class: "down-arrow-button",
+            id: "sec-down-#{track.id}",
             remote: true %></td>
           <td class="center"><%= track.sequence %></td>
-          <td class="link_icon-bottom"><%= link_to "",
+          <td class="link-icon-bottom">
+            <%= link_to "<div class=\"up-arrow-button\"></div>".html_safe,
             sec_up_track_path(track, project_id: @project),
-            id: "sec-up-#{track.id}", class: "up-arrow-button",
+            id: "sec-up-#{track.id}",
             remote: true %></td>
           <td 
             class="first"><%= link_to track.title,
@@ -32,13 +34,17 @@
           <td class="last">
             <%= link_to track.comments.count,
                         project_track_path(@project, track) %></td>
-          <td class="link_icon"><%= link_to "<", 
+          <td class="link-icon-left">
+            <%= link_to "<div class=\"left-arrow-button\"></div>".html_safe, 
             status_down_track_path(track, project_id: @project),
-            id: "status-down-#{track.id}" %></td>
+            id: "status-down-#{track.id}", remote: true %>
+          </td>
           <td class="center"><%= track.status %></td>
-          <td class="link_icon"><%= link_to ">", 
+          <td class="link-icon-right">
+            <%= link_to "<div class= \"right-arrow-button\"></td>".html_safe, 
             status_up_track_path(track, project_id: @project),
-            id: "status-up-#{track.id}" %></td>
+            id: "status-up-#{track.id}", remote: true %>
+          </td>
         </tr>
       <% end %>
     </tbody>
