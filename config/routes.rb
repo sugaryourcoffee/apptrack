@@ -26,6 +26,12 @@ Apptrack::Application.routes.draw do
   end
 
   resources :tracks do
+    member do
+      get 'sec_down'
+      get 'sec_up'
+      get 'status_down'
+      get 'status_up'
+    end
     resources :comments
   end
 

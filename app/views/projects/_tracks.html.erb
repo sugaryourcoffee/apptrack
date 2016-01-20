@@ -1,25 +1,42 @@
 <ul id="tracks">
   <table> 
     <thead>
-      <th>Sequence</th>
+      <th colspan="3">Sequence</th>
       <th>Title</th>
       <th>Description</th>
       <th>Comments</th>
+      <th colspan="3">Status</th>
     </thead>
     <tbody>
       <% @tracks.each do |track| %>
-        <tr data-link="<%= project_track_path(@project, track) %>"
+        <tr data-no-turbolink
           class="<%= row_status_color(track.status) %> data"
           title="<%= "#{track.sequence}-#{track.status}-#{track.category}" %>">
-          <td class="first"><%= track.sequence %></td>
+          <td class="link_icon"><%= link_to "<", 
+            sec_down_track_path(track, project_id: @project),
+            id: "sec-down-#{track.id}" %></td>
+          <td class="center"><%= track.sequence %></td>
+          <td class="link_icon"><%= link_to ">", 
+            sec_up_track_path(track, project_id: @project),
+            id: "sec-up-#{track.id}" %></td>
           <td 
             class="first"><%= link_to track.title,
                                       project_track_path(@project, track) %>
           </td>
           <td class="middle">
-            <%= truncate(track.description, length: 180) %>
+            <%= link_to markdown(track.description),
+                        project_track_path(@project, track) %>
           </td>
-          <td class="last"><%= track.comments.count %></td>
+          <td class="last">
+            <%= link_to track.comments.count,
+                        project_track_path(@project, track) %></td>
+          <td class="link_icon"><%= link_to "<", 
+            status_down_track_path(track, project_id: @project),
+            id: "status-down-#{track.id}" %></td>
+          <td class="center"><%= track.status %></td>
+          <td class="link_icon"><%= link_to ">", 
+            status_up_track_path(track, project_id: @project),
+            id: "status-up-#{track.id}" %></td>
         </tr>
       <% end %>
     </tbody>
