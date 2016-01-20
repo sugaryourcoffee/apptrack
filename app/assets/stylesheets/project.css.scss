@@ -173,8 +173,13 @@ ul#tracks {
     td {
       vertical-align: top;
 
-      &.link_icon {
-        padding: 5px 5px 5px 5px;
+      &.link_icon-top {
+        padding: 10px 5px 5px 5px;
+        text-align: center;
+      }
+
+      &.link_icon-bottom {
+        padding: 0px 5px 5px 5px;
         text-align: center;
       }
 
@@ -188,7 +193,7 @@ ul#tracks {
       }
 
       &.middle {
-        padding: 5px 10px 5px 10px;
+        padding: 0px 10px 5px 10px;
       }
 
       &.last {

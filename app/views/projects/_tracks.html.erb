@@ -12,13 +12,15 @@
         <tr data-no-turbolink
           class="<%= row_status_color(track.status) %> data"
           title="<%= "#{track.sequence}-#{track.status}-#{track.category}" %>">
-          <td class="link_icon"><%= link_to "<", 
+          <td class="link_icon-top"><%= link_to "",
             sec_down_track_path(track, project_id: @project),
-            id: "sec-down-#{track.id}" %></td>
+            id: "sec-down-#{track.id}", class: "down-arrow-button",
+            remote: true %></td>
           <td class="center"><%= track.sequence %></td>
-          <td class="link_icon"><%= link_to ">", 
+          <td class="link_icon-bottom"><%= link_to "",
             sec_up_track_path(track, project_id: @project),
-            id: "sec-up-#{track.id}" %></td>
+            id: "sec-up-#{track.id}", class: "up-arrow-button",
+            remote: true %></td>
           <td 
             class="first"><%= link_to track.title,
                                       project_track_path(@project, track) %>
